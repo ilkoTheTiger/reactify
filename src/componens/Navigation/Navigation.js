@@ -1,6 +1,8 @@
+import styles from './Navigation.module.css'
+
 export const Navigation = () => {
     return (
-        <nav className="navigation">
+        <nav className={styles.navigation}>
             <p>Navigation</p>
         </nav>
     );
