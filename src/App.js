@@ -11,14 +11,13 @@ function App() {
         <>
             <header>
                 <Navigation />
+            </header>
+            <main>
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/about' element={<h1>About Page</h1>} />
                     <Route path='/*' element={<h1>404 Page</h1>} />
                 </Routes>
-            </header>
-            <main>
-                <h1>Hello SoftUni</h1>
             </main>
             <Footer />
         </>
