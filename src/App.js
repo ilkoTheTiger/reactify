@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import { Create } from './componens/Create/Create';
 import { Footer } from './componens/Footer/Footer';
 
 import { Home } from './componens/Home/Home'
@@ -15,7 +16,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/about' element={<h1>About Page</h1>} />
+                    <Route path='/create' element={<Create />} />
                     <Route path='/*' element={<h1>404 Page</h1>} />
                 </Routes>
             </main>
