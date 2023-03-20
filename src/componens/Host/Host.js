@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styles from './Create.module.css';
+import styles from './Host.module.css';
 
-export const Create = () => {
+export const Host = () => {
     const [values, setValues] = useState({
         from: '',
         to: '',
@@ -21,7 +21,7 @@ export const Create = () => {
     return (
         <>
         <h2>Host a Commute</h2>
-        <form className={styles.create} onSubmit={onSubmitHandler}>
+        <form className={styles.host} onSubmit={onSubmitHandler}>
             <div>
                 <label htmlFor='from'>From</label>
                 <input 
