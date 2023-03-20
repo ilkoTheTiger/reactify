@@ -1,5 +1,7 @@
 .navigation {
     background-color: rgb(219, 254, 243);
+    border-bottom: 2px double #334a5a;
+    border-top: 1px outset rgb(219, 254, 243);
 }
 
 .navigation ul {
@@ -17,6 +19,10 @@
 .navigation li a {
     text-decoration: none;
     color: black;
+}
+
+.navigation li a:hover {
+    color: #13bc9c;
 }
 
 .navigation img {
