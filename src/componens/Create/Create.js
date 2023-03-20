@@ -13,14 +13,14 @@ export const Create = () => {
         setTo(e.target.value);
     };
 
-    // submitHandler(e) {
-    //     e.preventDefault();
-    // };
+    const submitHandler = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <>
         <h2>Host a Commute</h2>
-        <form class={styles.create}>
+        <form class={styles.create} onSubmit={submitHandler}>
             <div>
                 <label htmlFor='from'>From</label>
                 <input 
