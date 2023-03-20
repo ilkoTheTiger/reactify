@@ -2,38 +2,34 @@ import { useState } from 'react';
 import styles from './Create.module.css';
 
 export const Create = () => {
-    const [from, setFrom] = useState('');
-    const [to, setTo] = useState('');
-    const [seats, setSeats] = useState('1');
+    const [values, setValues] = useState({
+        from: '',
+        to: '',
+        seats: '1',
+        description: ''
+    });
 
-    const onFromChange = (e) => {
-        setFrom(e.target.value);
-    };
-
-    const onToChange = (e) => {
-        setTo(e.target.value);
-    };
-
-    const onSeatsChange = (e) => {
-        setSeats(e.target.value);
+    const onChangeHandler = (e) => {
+        setValues(state => ({...state, [e.target.name]: e.target.value}))
     };
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        console.log(values)
     };
 
     return (
         <>
         <h2>Host a Commute</h2>
-        <form class={styles.create} onSubmit={onSubmitHandler}>
+        <form className={styles.create} onSubmit={onSubmitHandler}>
             <div>
                 <label htmlFor='from'>From</label>
                 <input 
                 type='text' 
                 name='from' 
                 id='from' 
-                onChange={onFromChange}
-                value={from}
+                value={values.from}
+                onChange={onChangeHandler}
                 placeholder='Enter city of departure..'
                 />
             </div>
@@ -44,20 +40,33 @@ export const Create = () => {
                 type='text' 
                 name='to' 
                 id='to' 
-                onChange={onToChange}
-                value={to}
+                value={values.to}
+                onChange={onChangeHandler}
                 placeholder='Enter city of arrival..'
                 />
             </div>
 
             <div>
                 <label htmlFor='seats'>Seats</label>
-                <select name='seats' id='seats' value={seats} onChange={onSeatsChange}>
+                <select name='seats' id='seats' value={values.seats} onChange={onChangeHandler}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
                     <option value='4'>4</option>
                 </select>
+            </div>
+
+            <div>
+                <label htmlFor='description'>Description</label>
+                <textarea 
+                name='description' 
+                id='description' 
+                cols='30' 
+                rows='10' 
+                value={values.description}
+                onChange={onChangeHandler}
+                placeholder='Enter description'
+                ></textarea>
             </div>
 
             <div>
