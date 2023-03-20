@@ -1,4 +1,6 @@
-# CleanIt
+# MetniMe
 
 ## Purpose
-This is a place for service providers and customers related to commercial and domestic cleaning services. The main goal is to ease the process of booking, attending and invoicing.
+MetniMe is a web-application for shared commutes, where users can create a commute and the rest of the users can join the ride, should they desire to do so and there are spaces available.
+
+## Commutes
