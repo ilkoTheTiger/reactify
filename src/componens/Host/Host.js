@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import styles from './Host.module.css';
 import { currentDateTime } from '../../utils/dateUtils';
+import { redirect } from 'react-router-dom';
 
 export const Host = () => {
     const now = currentDateTime();
-
-    console.log(now)
     const [values, setValues] = useState({
         from: '',
         to: '',
@@ -74,7 +73,9 @@ export const Host = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        redirect('/')
     };
+
 
     return (
         <div className={styles.hostContainer}>

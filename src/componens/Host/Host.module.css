@@ -73,6 +73,15 @@
 }
 
 div .inputSubmit {
-  color: var(--clr-fill);
-  min-height: 0.75rem;
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);;
+  background-color: var(--clr-fill-light);
+  min-height: 2rem;
+  border-radius: 0.25rem;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+div .inputSubmit:hover {
+  background-color: var(--clr-fill);
 }
