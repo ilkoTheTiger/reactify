@@ -9,9 +9,36 @@ export const Host = () => {
         description: ''
     });
 
+    const [formErrors, setFormErrors] = useState({
+        from: '',
+        to: '',
+        seats: '1',
+        description: ''
+    });
+
     const onChangeHandler = (e) => {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }))
     };
+
+    const formValidate = (e) => {
+        const value = e.target.value;
+        const target = e.target.name;
+        const errors = { ...formErrors }
+
+        if (target === 'from' && (value.length < 3 || value.length > 14)) {
+            errors.from = 'City of Departure must be between 3 and 14 characters';
+        } else if (target === 'from' && !(value.length < 3 || value.length > 14)) {
+            errors.from = ''
+        }
+
+        if (target === 'to' && (value.length < 3 || value.length > 14)) {
+            errors.to = 'City of Arrival must be between 3 and 14 characters';
+        } else if (target === 'to' && !(value.length < 3 || value.length > 14)) {
+            errors.to = ''
+        }
+
+        setFormErrors(errors)
+    }
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -24,33 +51,45 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='from'>From</label>
                     <div className={styles.formInput}>
-                        <span><i className='fa fa-circle-dot'></i></span>
+                        <span style={formErrors.from ? { borderColor: 'red' } : {}}><i className='fa fa-circle-dot'></i></span>
                         <input
                             type='text'
                             name='from'
                             id='from'
                             value={values.from}
                             onChange={onChangeHandler}
+                            onBlur={formValidate}
                             placeholder='Enter city of departure..'
+                            style={formErrors.from ? { borderColor: 'red' } : {}}
                         />
                     </div>
-                    <p className={styles.formError}>City of Departure should be at least 3 character long!</p>
+                    {formErrors.from &&
+                        <p className={styles.formError}>
+                            {formErrors.from}
+                        </p>
+                    }
                 </div>
 
                 <div className={styles.formRow}>
                     <label htmlFor='to'>To</label>
                     <div className={styles.formInput}>
-                        <span><i className="fa-solid fa-location-dot"></i></span>
+                        <span style={formErrors.to ? { borderColor: 'red' } : {}}><i className="fa-solid fa-location-dot"></i></span>
                         <input
                             type='text'
                             name='to'
                             id='to'
                             value={values.to}
                             onChange={onChangeHandler}
+                            onBlur={formValidate}
                             placeholder='Enter city of arrival..'
+                            style={formErrors.to ? { borderColor: 'red' } : {}}
                         />
                     </div>
-                    <p className={styles.formError}>City of Arrival should be at least 3 character long!</p>
+                    {formErrors.to &&
+                        <p className={styles.formError}>
+                            {formErrors.to}
+                        </p>
+                    }
                 </div>
 
                 <div className={styles.formRow}>
