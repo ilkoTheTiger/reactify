@@ -24,7 +24,7 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='from'>From</label>
                     <div className={styles.formInput}>
-                        <span><i className="fa-solid fa-user" aria-hidden="true"></i></span>
+                        <span><i className='fa fa-circle-dot'></i></span>
                         <input
                             type='text'
                             name='from'
@@ -34,12 +34,13 @@ export const Host = () => {
                             placeholder='Enter city of departure..'
                         />
                     </div>
-                    <p className={styles.formError}>City of Arrival should be at least 3 character long!</p>
+                    <p className={styles.formError}>City of Departure should be at least 3 character long!</p>
                 </div>
 
                 <div className={styles.formRow}>
                     <label htmlFor='to'>To</label>
                     <div className={styles.formInput}>
+                        <span><i className="fa-solid fa-location-dot"></i></span>
                         <input
                             type='text'
                             name='to'
@@ -49,11 +50,13 @@ export const Host = () => {
                             placeholder='Enter city of arrival..'
                         />
                     </div>
+                    <p className={styles.formError}>City of Arrival should be at least 3 character long!</p>
                 </div>
 
                 <div className={styles.formRow}>
                     <label htmlFor='seats'>Seats</label>
                     <div className={styles.formInput}>
+                        <span><i className="fa-solid fa-person"></i></span>
                         <select name='seats' id='seats' value={values.seats} onChange={onChangeHandler}>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
@@ -66,6 +69,7 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='description'>Description</label>
                     <div className={styles.formInput}>
+                        <span><i className="fa-solid fa-circle-info"></i></span>
                         <textarea
                             name='description'
                             id='description'

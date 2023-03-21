@@ -45,7 +45,7 @@
     vertical-align: -0.125em;
   }
   
-  .formInput input {
+  .formInput input, textarea, select {
     width: 100%;
     font-weight: 400;
     line-height: 1.5;
