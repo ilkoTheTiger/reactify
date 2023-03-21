@@ -12,7 +12,7 @@
     align-items: left;
     justify-content: space-between;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 0.25rem;
 }
 
 .formInput {
@@ -24,25 +24,24 @@
 .formInput span {
     display: flex;
     align-items: center;
-    padding: 6px 12px;
+    padding: 0.25rem 0.5rem;
     font-weight: 400;
     line-height: 1;
     color: var(--clr-i-fill);
     text-align: center;
     background-color: var(--clr-field);
     border: 1px solid  var(--clr-field-border);
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-top-left-radius: 0.1rem;
+    border-bottom-left-radius: 0.1rem;
   }
   
   .formInput span i {
-    width: 28px;
-    height: 1 em;
+    width: 1.5rem;
+    height: 1rem;
     min-width: 28px;
     display: inline-block;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     color: var(--clr-primary);
-    vertical-align: -0.125em;
   }
   
   .formInput input, textarea, select {
@@ -52,8 +51,8 @@
     border: 1px solid var(--clr-field-border);
     border-left: none;
     outline: none;
-    height: 50px;
-    padding: 6px 12px;
+    min-height: 3rem;
+    padding: 0.25rem 0.5rem;
     background-color: var(--clr-field);
     border-top-right-radius: 1.25rem;
     border-bottom-right-radius: 1.25rem;
@@ -61,5 +60,5 @@
   
   .formRow .formError {
     color: var(--clr-error);
-    min-height: 20px;
+    min-height: 0.75rem;
   }
