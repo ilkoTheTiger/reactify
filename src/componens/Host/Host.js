@@ -73,8 +73,6 @@ export const Host = () => {
                         <textarea
                             name='description'
                             id='description'
-                            cols='30'
-                            rows='10'
                             value={values.description}
                             onChange={onChangeHandler}
                             placeholder='Enter description'
