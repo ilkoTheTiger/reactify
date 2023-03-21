@@ -51,7 +51,7 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='from'>From</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.from ? { borderColor: 'red' } : {}}><i className='fa fa-circle-dot'></i></span>
+                        <span style={formErrors.from ? { borderColor: 'red' } : (values.from.length > 2) ? {borderColor: 'green'} : {}}><i className='fa fa-circle-dot'></i></span>
                         <input
                             type='text'
                             name='from'
@@ -60,7 +60,7 @@ export const Host = () => {
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter city of departure..'
-                            style={formErrors.from ? { borderColor: 'red' } : {}}
+                            style={formErrors.from ? { borderColor: 'red' } : (values.from.length > 2) ? {borderColor: 'green'} : {}}
                         />
                     </div>
                     {formErrors.from &&
@@ -73,7 +73,7 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='to'>To</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.to ? { borderColor: 'red' } : {}}><i className="fa-solid fa-location-dot"></i></span>
+                        <span style={formErrors.to ? { borderColor: 'red' } : (values.to.length > 2) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-location-dot"></i></span>
                         <input
                             type='text'
                             name='to'
@@ -82,7 +82,7 @@ export const Host = () => {
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter city of arrival..'
-                            style={formErrors.to ? { borderColor: 'red' } : {}}
+                            style={formErrors.to ? { borderColor: 'red' } : (values.to.length > 2) ? {borderColor: 'green'} : {}}
                         />
                     </div>
                     {formErrors.to &&
