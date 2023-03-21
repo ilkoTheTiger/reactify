@@ -191,8 +191,8 @@ export const Host = () => {
                     }
                 </div>
 
-                <div>
-                    <input type='submit' value='Host' />
+                <div >
+                    <input className={styles.inputSubmit} type='submit' value='Host' />
                 </div>
             </form>
         </div>
