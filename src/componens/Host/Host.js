@@ -1,21 +1,25 @@
 import { useState } from 'react';
 import styles from './Host.module.css';
+import { currentDateTime } from '../../utils/dateUtils';
 
 export const Host = () => {
+    const now = currentDateTime();
+
+    console.log(now)
     const [values, setValues] = useState({
         from: '',
         to: '',
         seats: '',
-        description: '',
-        phone: ''
+        phone: '',
+        time: ''
     });
 
     const [formErrors, setFormErrors] = useState({
         from: '',
         to: '',
         seats: '',
-        description: '',
-        phone: ''
+        phone: '',
+        time: ''
     });
 
     const onChangeHandler = (e) => {
@@ -159,17 +163,26 @@ export const Host = () => {
                 </div>
 
                 <div className={styles.formRow}>
-                    <label htmlFor='description'>Description</label>
+                    <label htmlFor='time'>Scheduled for</label>
                     <div className={styles.formInput}>
-                        <span><i className="fa-solid fa-circle-info"></i></span>
-                        <textarea
-                            name='description'
-                            id='description'
-                            value={values.description}
+                        <span style={formErrors.time ? { borderColor: 'red' } : (values.time.length == 10) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-clock"></i></span>
+                        <input
+                            type='datetime-local'
+                            name='time'
+                            min={now}
+                            id='time'
+                            value={values.time}
                             onChange={onChangeHandler}
-                            placeholder='Enter description..'
-                        ></textarea>
+                            onBlur={formValidate}
+                            placeholder='Enter time number..'
+                            style={formErrors.time ? { borderColor: 'red' } : (values.time.length == 10) ? {borderColor: 'green'} : {}}
+                        />
                     </div>
+                    {formErrors.time &&
+                        <p className={styles.formError}>
+                            {formErrors.time}
+                        </p>
+                    }
                 </div>
 
                 <div>
