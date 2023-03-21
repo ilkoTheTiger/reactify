@@ -63,6 +63,12 @@ export const Host = () => {
             errors.phone = ''
         }
 
+        if (target === 'time' && (value <= now)) {
+            errors.time = 'Scheduled date must be in the future!';
+        } else if (target === 'time' && value) {
+            errors.time = ''
+        }
+
         setFormErrors(errors)
     }
 
@@ -71,7 +77,7 @@ export const Host = () => {
     };
 
     return (
-        <>
+        <div className={styles.hostContainer}>
             <h2>Host a Commute</h2>
             <form className={styles.host} onSubmit={onSubmitHandler}>
                 <div className={styles.formRow}>
@@ -165,7 +171,7 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='time'>Scheduled for</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.time ? { borderColor: 'red' } : (values.time.length == 10) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-clock"></i></span>
+                        <span style={formErrors.time ? { borderColor: 'red' } : values.time ? {borderColor: 'green'} : {}}><i className="fa-solid fa-clock"></i></span>
                         <input
                             type='datetime-local'
                             name='time'
@@ -175,7 +181,7 @@ export const Host = () => {
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter time number..'
-                            style={formErrors.time ? { borderColor: 'red' } : (values.time.length == 10) ? {borderColor: 'green'} : {}}
+                            style={formErrors.time ? { borderColor: 'red' } : values.time ? {borderColor: 'green'} : {}}
                         />
                     </div>
                     {formErrors.time &&
@@ -189,6 +195,6 @@ export const Host = () => {
                     <input type='submit' value='Host' />
                 </div>
             </form>
-        </>
+        </div>
     );
 };
