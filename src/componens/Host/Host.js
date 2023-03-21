@@ -21,7 +21,7 @@ export const Host = () => {
         <>
         <h2>Host a Commute</h2>
         <form className={styles.host} onSubmit={onSubmitHandler}>
-            <div>
+            <div className={styles.row}>
                 <label htmlFor='from'>From</label>
                 <input 
                 type='text' 
@@ -33,7 +33,7 @@ export const Host = () => {
                 />
             </div>
 
-            <div>
+            <div className={styles.row}>
                 <label htmlFor='to'>To</label>
                 <input 
                 type='text' 
@@ -45,7 +45,7 @@ export const Host = () => {
                 />
             </div>
 
-            <div>
+            <div className={styles.row}>
                 <label htmlFor='seats'>Seats</label>
                 <select name='seats' id='seats' value={values.seats} onChange={onChangeHandler}>
                     <option value='1'>1</option>
@@ -55,7 +55,7 @@ export const Host = () => {
                 </select>
             </div>
 
-            <div>
+            <div className={styles.row}>
                 <label htmlFor='description'>Description</label>
                 <textarea 
                 name='description' 

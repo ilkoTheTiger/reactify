@@ -16,7 +16,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/create' element={<Host />} />
+                    <Route path='/host' element={<Host />} />
                     <Route path='/*' element={<h1>404 Page</h1>} />
                 </Routes>
             </main>
