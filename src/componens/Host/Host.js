@@ -15,7 +15,6 @@ export const Host = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log(values)
     };
 
     return (
