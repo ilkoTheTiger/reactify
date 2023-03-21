@@ -56,9 +56,9 @@ export const Host = () => {
             errors.seats = ''
         }
 
-        if (target === 'phone' && (value.length != 10)) {
+        if (target === 'phone' && (value.length !== 10)) {
             errors.phone = 'Phone number must be 10 digits!';
-        } else if (target === 'phone' && value.length == 10) {
+        } else if (target === 'phone' && value.length === 10) {
             errors.phone = ''
         }
 
@@ -128,7 +128,7 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='seats'>Available Seats</label>
                     <div className={styles.formInput}>
-                        <span style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length == 1 && !isNaN(values.seats)) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-person"></i></span>
+                        <span style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length === 1 && !isNaN(values.seats)) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-person"></i></span>
                         <input
                             type='text'
                             name='seats'
@@ -137,7 +137,7 @@ export const Host = () => {
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter available seats..'
-                            style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length == 1 && !isNaN(values.seats)) ? {borderColor: 'green'} : {}}
+                            style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length === 1 && !isNaN(values.seats)) ? {borderColor: 'green'} : {}}
                         />
                     </div>
                     {formErrors.seats &&
@@ -150,7 +150,7 @@ export const Host = () => {
                 <div className={styles.formRow}>
                     <label htmlFor='phone'>Phone Number</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length == 10) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-phone"></i></span>
+                        <span style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length === 10) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-phone"></i></span>
                         <input
                             type='text'
                             name='phone'
@@ -159,7 +159,7 @@ export const Host = () => {
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter phone number..'
-                            style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length == 10) ? {borderColor: 'green'} : {}}
+                            style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length === 10) ? {borderColor: 'green'} : {}}
                         />
                     </div>
                     {formErrors.phone &&
