@@ -10,7 +10,7 @@ export const Host = () => {
     });
 
     const onChangeHandler = (e) => {
-        setValues(state => ({...state, [e.target.name]: e.target.value}))
+        setValues(state => ({ ...state, [e.target.name]: e.target.value }))
     };
 
     const onSubmitHandler = (e) => {
@@ -19,59 +19,69 @@ export const Host = () => {
 
     return (
         <>
-        <h2>Host a Commute</h2>
-        <form className={styles.host} onSubmit={onSubmitHandler}>
-            <div className={styles.row}>
-                <label htmlFor='from'>From</label>
-                <input 
-                type='text' 
-                name='from' 
-                id='from' 
-                value={values.from}
-                onChange={onChangeHandler}
-                placeholder='Enter city of departure..'
-                />
-            </div>
+            <h2>Host a Commute</h2>
+            <form className={styles.host} onSubmit={onSubmitHandler}>
+                <div className={styles.formRow}>
+                    <label htmlFor='from'>From</label>
+                    <div className={styles.formInput}>
+                        <span><i className="fa-solid fa-user" aria-hidden="true"></i></span>
+                        <input
+                            type='text'
+                            name='from'
+                            id='from'
+                            value={values.from}
+                            onChange={onChangeHandler}
+                            placeholder='Enter city of departure..'
+                        />
+                    </div>
+                    <p className={styles.formError}>City of Arrival should be at least 3 character long!</p>
+                </div>
 
-            <div className={styles.row}>
-                <label htmlFor='to'>To</label>
-                <input 
-                type='text' 
-                name='to' 
-                id='to' 
-                value={values.to}
-                onChange={onChangeHandler}
-                placeholder='Enter city of arrival..'
-                />
-            </div>
+                <div className={styles.formRow}>
+                    <label htmlFor='to'>To</label>
+                    <div className={styles.formInput}>
+                        <input
+                            type='text'
+                            name='to'
+                            id='to'
+                            value={values.to}
+                            onChange={onChangeHandler}
+                            placeholder='Enter city of arrival..'
+                        />
+                    </div>
+                </div>
 
-            <div className={styles.row}>
-                <label htmlFor='seats'>Seats</label>
-                <select name='seats' id='seats' value={values.seats} onChange={onChangeHandler}>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                </select>
-            </div>
+                <div className={styles.formRow}>
+                    <label htmlFor='seats'>Seats</label>
+                    <div className={styles.formInput}>
+                        <select name='seats' id='seats' value={values.seats} onChange={onChangeHandler}>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                        </select>
+                    </div>
+                </div>
 
-            <div className={styles.row}>
-                <label htmlFor='description'>Description</label>
-                <textarea 
-                name='description' 
-                id='description' 
-                cols='30' 
-                rows='10' 
-                value={values.description}
-                onChange={onChangeHandler}
-                placeholder='Enter description'
-                ></textarea>
-            </div>
+                <div className={styles.formRow}>
+                    <label htmlFor='description'>Description</label>
+                    <div className={styles.formInput}>
+                        <textarea
+                            name='description'
+                            id='description'
+                            cols='30'
+                            rows='10'
+                            value={values.description}
+                            onChange={onChangeHandler}
+                            placeholder='Enter description'
+                        ></textarea>
+                    </div>
+                </div>
 
-            <div>
-                <input type='submit' value='Host' />
-            </div>
-        </form>
+                <div>
+                    <input type='submit' value='Host' />
+                </div>
+            </form>
         </>
     );
 };

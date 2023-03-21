@@ -6,7 +6,60 @@
     gap: 1rem;
 }
 
-.row {
+.formRow {
+    width: 55%;
     display: flex;
+    align-items: left;
+    justify-content: space-between;
     flex-direction: column;
+    margin-top: 15px;
 }
+
+.formInput {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+.formInput span {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #f7f7f7;
+    border: 1px solid #d5dee6;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  
+  .formInput span i {
+    width: 28px;
+    height: 1 em;
+    min-width: 28px;
+    display: inline-block;
+    font-size: 1.2em;
+    color: #000000;
+    vertical-align: -0.125em;
+  }
+  
+  .formInput input {
+    width: 100%;
+    font-weight: 400;
+    line-height: 1.5;
+    border: 1px solid #d5dee6;
+    border-left: none;
+    outline: none;
+    height: 50px;
+    padding: 6px 12px;
+    background-color: #f7f7f7;
+    border-top-right-radius: 1.25rem;
+    border-bottom-right-radius: 1.25rem;
+  }
+  
+  .formRow .formError {
+    color: #d9534f;
+    min-height: 20px;
+  }
