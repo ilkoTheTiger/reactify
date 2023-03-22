@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+
+import * as commuteService from './services/commuteService';
+
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import { Host } from './componens/Host/Host';
@@ -5,16 +9,18 @@ import { Footer } from './componens/Footer/Footer';
 
 import { Home } from './componens/Home/Home'
 import { Navigation } from './componens/Navigation/Navigation';
+import { Catalog } from './componens/Catalog/Catalog';
 
 
 
 function App() {
     const navigate = useNavigate();
+    const [commutes, setCommutes] = useState([]);
 
-    const onCreateGameSubmit = async (data) => {
+    const onHostCommuteSubmit = async (data) => {
         const newCommute = await commuteService.create(data);
     
-        setGames(state => [...state, newCommute]);
+        setCommutes(state => [...state, newCommute]);
     
         navigate('/catalog');
     };
@@ -27,7 +33,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/host' element={<Host onCreateGameSubmit={onCreateGameSubmit} />} />
+                    <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
                     <Route path='/catalog' element={<Catalog />} />
                     <Route path='/login' element={<h1>Login Page</h1>} />
                     <Route path='/register' element={<h1>Register Page</h1>} />

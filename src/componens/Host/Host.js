@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styles from './Host.module.css';
-import { currentDateTime } from '../../utils/dateUtils';
-import { redirect } from 'react-router-dom';
+import { currentDateTime, maxDate } from '../../utils/dateUtils';
+import { checkForErrors, validateAll } from '../../utils/validators';
 
 export const Host = () => {
     const now = currentDateTime();
+    const max = maxDate();
     const [values, setValues] = useState({
         from: '',
         to: '',
@@ -59,14 +60,16 @@ export const Host = () => {
         if (target === 'phone' && (value.length !== 10)) {
             errors.phone = 'Phone number must be 10 digits!';
         } else if (target === 'phone' && value.length === 10) {
-            errors.phone = ''
-        }
+            errors.phone = '';
+        };
 
         if (target === 'time' && (value <= now)) {
             errors.time = 'Scheduled date must be in the future!';
+        } else if (target === 'time' && (value > max)) {
+            errors.time = 'Scheduled date must be in the near future!';
         } else if (target === 'time' && value) {
-            errors.time = ''
-        }
+            errors.time = '';
+        };
 
         setFormErrors(errors)
     }
@@ -74,6 +77,9 @@ export const Host = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
+        if (validateAll(values)) {
+            return alert('All fields are required!');
+        }
     };
 
 
@@ -177,6 +183,7 @@ export const Host = () => {
                             type='datetime-local'
                             name='time'
                             min={now}
+                            max={max}
                             id='time'
                             value={values.time}
                             onChange={onChangeHandler}
@@ -193,7 +200,7 @@ export const Host = () => {
                 </div>
 
                 <div >
-                    <input className={styles.inputSubmit} type='submit' value='Host' />
+                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : validateAll(values) ? {} : {border: '2px solid green'}} disabled={checkForErrors(formErrors)} value='Host' />
                 </div>
             </form>
         </section>
