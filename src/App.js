@@ -12,9 +12,9 @@ function App() {
     const navigate = useNavigate();
 
     const onCreateGameSubmit = async (data) => {
-        const newGame = await commuteService.create(data);
+        const newCommute = await commuteService.create(data);
     
-        setGames(state => [...state, newGame]);
+        setGames(state => [...state, newCommute]);
     
         navigate('/catalog');
     };
