@@ -16,13 +16,19 @@ import { Catalog } from './componens/Catalog/Catalog';
 function App() {
     const navigate = useNavigate();
     const [commutes, setCommutes] = useState([]);
+    useEffect(() => {
+        commuteService.getAll()
+            .then(result => {
+                setCommutes(result);
+            });
+    }, []);
 
     const onHostCommuteSubmit = async (data) => {
         const createdCommute = await commuteService.create(data);
     
         setCommutes(state => [...state, createdCommute]);
     
-        // navigate('/catalog');
+        navigate('/catalog');
     };
 
     return (
@@ -34,7 +40,8 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
-                    <Route path='/catalog' element={<Catalog />} />
+                    <Route path='/commutes' element={<Catalog commutes={commutes}/>} />
+                    {/* <Route path='/catalog/:commuteId' element={<CommuteDetails />}></Route> */}
                     <Route path='/login' element={<h1>Login Page</h1>} />
                     <Route path='/register' element={<h1>Register Page</h1>} />
                     <Route path='/*' element={<h1>404 Page</h1>} />

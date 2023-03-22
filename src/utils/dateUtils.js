@@ -7,7 +7,7 @@ export const currentDateTime = () => {
         ${String(date.getHours()).padStart(2, '0')}:
         ${String(date.getMinutes()).padStart(2, '0')}`.replace(/\s+/g, '').trim();
 
-}
+};
 
 export const maxDate = () => {
     const date = new Date();
@@ -18,4 +18,10 @@ export const maxDate = () => {
         ${String(date.getHours()).padStart(2, '0')}:
         ${String(date.getMinutes()).padStart(2, '0')}`.replace(/\s+/g, '').trim();
 
+};
+
+export const formatDate = (input) => {
+    const date = new Date(input);
+
+    return date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' });
 }
