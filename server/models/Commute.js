@@ -26,17 +26,12 @@ const commuteSchema = new Schema(
         max: [4, 'Available seats must a number be between 0 and 4!'],
         validate: /[1-4]{1}$/,
       },
-    phoneNumber: {
-      type: String,
-      required: true,
-      match: [/^0[1-9]{1}[0-9]{8}$/, 'Phone number is not valid!'],
-    },
-    phoneNumber: {
+    phone: {
         type: String,
         required: true,
         match: [/^0[1-9]{1}[0-9]{8}$/, 'Phone number is not valid!'],
     },
-    phoneNumber: {
+    time: {
         type: Date,
         required: true,
         min: [minDate, 'Scheduled date must be in the future!'],
