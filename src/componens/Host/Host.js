@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './Host.module.css';
 import { currentDateTime, maxDate } from '../../utils/dateUtils';
-import { checkForErrors, validateAll } from '../../utils/validators';
+import { checkForErrors, hasEmptyProperty } from '../../utils/validators';
 
 export const Host = ({
     onHostCommuteSubmit,
@@ -79,7 +79,7 @@ export const Host = ({
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        if (validateAll(values)) {
+        if (hasEmptyProperty(values)) {
             return alert('All fields are required!');
         };
 
@@ -194,7 +194,6 @@ export const Host = ({
                             value={values.time}
                             onChange={onChangeHandler}
                             onBlur={formValidate}
-                            placeholder='Enter time number..'
                             style={formErrors.time ? { borderColor: 'red' } : values.time ? {borderColor: 'green'} : {}}
                         />
                     </div>
@@ -206,7 +205,7 @@ export const Host = ({
                 </div>
 
                 <div >
-                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : validateAll(values) ? {} : {border: '2px solid green'}} disabled={checkForErrors(formErrors)} value='Host' />
+                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : hasEmptyProperty(values) ? {} : {border: '2px solid green'}} disabled={checkForErrors(formErrors)} value='Host' />
                 </div>
             </form>
         </section>
