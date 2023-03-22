@@ -73,12 +73,12 @@ export const Host = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        redirect('/')
+
     };
 
 
     return (
-        <div className={styles.hostContainer}>
+        <section className={styles.hostContainer}>
             <h2>Host a Commute</h2>
             <form className={styles.host} onSubmit={onSubmitHandler}>
                 <div className={styles.formRow}>
@@ -196,6 +196,6 @@ export const Host = () => {
                     <input className={styles.inputSubmit} type='submit' value='Host' />
                 </div>
             </form>
-        </div>
+        </section>
     );
 };
