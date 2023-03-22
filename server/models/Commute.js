@@ -10,14 +10,15 @@ const commuteSchema = new Schema(
       required: true,
       minLength: [3, 'City of Departure must be between 3 and 14 letters!'],
       maxLength: [14, 'City of Departure must be between 3 and 14 letters!'],
-      match: [/\d/, 'City of Departure must be letters only!'],
+      validate: [/^[A-Za-z]*$/, 'City of Departure must be letters only!'],
     },
     to: {
       type: String,
       required: true,
       minLength: [3, 'City of Arrival must be between 3 and 14 letters!'],
       maxLength: [14, 'City of Arrival must be between 3 and 14 letters!'],
-      match: [/\d/, 'City of Arrival must be letters only!'],
+      validate: [cityMatchValidator, 'City of Departure is same as City of Arrival!'],
+      match: [/^[A-Za-z]*$/, 'City of Arrival must be letters only!'],
     },
     seats: {
         type: Number,
@@ -44,6 +45,11 @@ const commuteSchema = new Schema(
   },
   { timestamps: true }
 );
+
+function cityMatchValidator() {
+  // `this` is the mongoose document
+  return this.from != this.to;
+}
 
 const commuteModel = model('Commute', commuteSchema);
 module.exports = {

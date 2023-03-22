@@ -18,11 +18,11 @@ function App() {
     const [commutes, setCommutes] = useState([]);
 
     const onHostCommuteSubmit = async (data) => {
-        const newCommute = await commuteService.create(data);
+        const createdCommute = await commuteService.create(data);
     
-        setCommutes(state => [...state, newCommute]);
+        setCommutes(state => [...state, createdCommute]);
     
-        navigate('/catalog');
+        // navigate('/catalog');
     };
 
     return (

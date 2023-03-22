@@ -3,7 +3,9 @@ import styles from './Host.module.css';
 import { currentDateTime, maxDate } from '../../utils/dateUtils';
 import { checkForErrors, validateAll } from '../../utils/validators';
 
-export const Host = () => {
+export const Host = ({
+    onHostCommuteSubmit,
+}) => {
     const now = currentDateTime();
     const max = maxDate();
     const [values, setValues] = useState({
@@ -79,7 +81,11 @@ export const Host = () => {
 
         if (validateAll(values)) {
             return alert('All fields are required!');
-        }
+        };
+
+        console.log(values);
+
+        onHostCommuteSubmit(values);
     };
 
 
