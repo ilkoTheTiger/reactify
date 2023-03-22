@@ -62,7 +62,7 @@ const deleteCommute = async (req, res) => {
 
 const allCommutes = async (req, res) => {
   const page = parseInt(req?.query?.page) || 1;
-  const limit = parseInt(req?.query?.limit) || 5;
+  const limit = parseInt(req?.query?.limit) || 9;
   const sort = req?.query?.sort;
   const order = req?.query?.order;
   const search = req?.query?.search;

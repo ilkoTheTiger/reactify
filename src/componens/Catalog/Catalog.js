@@ -7,9 +7,9 @@ export const Catalog = ({
     return (
         <section className={styles.catalogContainer}>
             <h2>Find a Commute</h2>
-
-            {commutes.map(commute => <CatalogItem key={commute._id} {...commute} />)}
-
+            <div className={styles.commutesContainer}>
+                {commutes.map(commute => <CatalogItem key={commute._id} {...commute} />)}
+            </div>
             {commutes.length === 0 && (
                 <h3 className={styles.noCommutes}>No commutes right now.</h3>
             )}

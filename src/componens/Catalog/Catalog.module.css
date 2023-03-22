@@ -7,6 +7,15 @@
     gap: 1rem;
 }
 
+.commutesContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 /* CatalogItem */
 
 article.allCommutes {
@@ -14,8 +23,8 @@ article.allCommutes {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
-    width: 100vw;
 }
 
 .allCommutesInfo {
@@ -25,7 +34,7 @@ article.allCommutes {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem;
-    width: 27%;
+    width: 30vw;
     border-radius: 1rem;
     padding: 0.5rem 1.25rem;
     background-color: lightcyan;
