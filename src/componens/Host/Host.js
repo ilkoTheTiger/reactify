@@ -59,7 +59,9 @@ export const Host = ({
             errors.seats = ''
         }
 
-        if (target === 'phone' && (value.length !== 10)) {
+        if (target === 'phone' && !(/^0[1-9]{1}[0-9]{8}$/.test(value))) {
+            errors.phone = 'Phone number must start with 0 followed by 9 digits!';
+        } else if (target === 'phone' && (value.length !== 10)) {
             errors.phone = 'Phone number must be 10 digits!';
         } else if (target === 'phone' && value.length === 10) {
             errors.phone = '';
@@ -96,7 +98,7 @@ export const Host = ({
                 <div className={styles.formRow}>
                     <label htmlFor='from'>Departing From</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.from ? { borderColor: 'red' } : (values.from.length > 2 && !/\d/.test(values.from)) ? {borderColor: 'green'} : {}}><i className='fa fa-circle-dot'></i></span>
+                        <span style={formErrors.from ? { borderColor: 'red' } : (values.from.length > 2 && !/\d/.test(values.from)) ? { borderColor: 'green' } : {}}><i className='fa fa-circle-dot'></i></span>
                         <input
                             type='text'
                             name='from'
@@ -105,7 +107,7 @@ export const Host = ({
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter city of departure..'
-                            style={formErrors.from ? { borderColor: 'red' } : (values.from.length > 2 && !/\d/.test(values.from)) ? {borderColor: 'green'} : {}}
+                            style={formErrors.from ? { borderColor: 'red' } : (values.from.length > 2 && !/\d/.test(values.from)) ? { borderColor: 'green' } : {}}
                         />
                     </div>
                     {formErrors.from &&
@@ -118,7 +120,7 @@ export const Host = ({
                 <div className={styles.formRow}>
                     <label htmlFor='to'>Travelling To</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.to ? { borderColor: 'red' } : (values.to.length > 2 && !/\d/.test(values.to)) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-location-dot"></i></span>
+                        <span style={formErrors.to ? { borderColor: 'red' } : (values.to.length > 2 && !/\d/.test(values.to)) ? { borderColor: 'green' } : {}}><i className="fa-solid fa-location-dot"></i></span>
                         <input
                             type='text'
                             name='to'
@@ -127,7 +129,7 @@ export const Host = ({
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter city of arrival..'
-                            style={formErrors.to ? { borderColor: 'red' } : (values.to.length > 2 && !/\d/.test(values.to)) ? {borderColor: 'green'} : {}}
+                            style={formErrors.to ? { borderColor: 'red' } : (values.to.length > 2 && !/\d/.test(values.to)) ? { borderColor: 'green' } : {}}
                         />
                     </div>
                     {formErrors.to &&
@@ -140,7 +142,7 @@ export const Host = ({
                 <div className={styles.formRow}>
                     <label htmlFor='seats'>Available Seats</label>
                     <div className={styles.formInput}>
-                        <span style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length === 1 && !isNaN(values.seats)) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-person"></i></span>
+                        <span style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length === 1 && !isNaN(values.seats)) ? { borderColor: 'green' } : {}}><i className="fa-solid fa-person"></i></span>
                         <input
                             type='text'
                             name='seats'
@@ -149,7 +151,7 @@ export const Host = ({
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter available seats..'
-                            style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length === 1 && !isNaN(values.seats)) ? {borderColor: 'green'} : {}}
+                            style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length === 1 && !isNaN(values.seats)) ? { borderColor: 'green' } : {}}
                         />
                     </div>
                     {formErrors.seats &&
@@ -162,7 +164,7 @@ export const Host = ({
                 <div className={styles.formRow}>
                     <label htmlFor='phone'>Phone Number</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length === 10) ? {borderColor: 'green'} : {}}><i className="fa-solid fa-phone"></i></span>
+                        <span style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length === 10) ? { borderColor: 'green' } : {}}><i className="fa-solid fa-phone"></i></span>
                         <input
                             type='text'
                             name='phone'
@@ -171,7 +173,7 @@ export const Host = ({
                             onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter phone number..'
-                            style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length === 10) ? {borderColor: 'green'} : {}}
+                            style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length === 10) ? { borderColor: 'green' } : {}}
                         />
                     </div>
                     {formErrors.phone &&
@@ -184,7 +186,7 @@ export const Host = ({
                 <div className={styles.formRow}>
                     <label htmlFor='time'>Scheduled for</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.time ? { borderColor: 'red' } : values.time ? {borderColor: 'green'} : {}}><i className="fa-solid fa-clock"></i></span>
+                        <span style={formErrors.time ? { borderColor: 'red' } : values.time ? { borderColor: 'green' } : {}}><i className="fa-solid fa-clock"></i></span>
                         <input
                             type='datetime-local'
                             name='time'
@@ -194,7 +196,7 @@ export const Host = ({
                             value={values.time}
                             onChange={onChangeHandler}
                             onBlur={formValidate}
-                            style={formErrors.time ? { borderColor: 'red' } : values.time ? {borderColor: 'green'} : {}}
+                            style={formErrors.time ? { borderColor: 'red' } : values.time ? { borderColor: 'green' } : {}}
                         />
                     </div>
                     {formErrors.time &&
@@ -205,7 +207,7 @@ export const Host = ({
                 </div>
 
                 <div >
-                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : hasEmptyProperty(values) ? {} : {border: '2px solid green'}} disabled={checkForErrors(formErrors)} value='Host' />
+                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : hasEmptyProperty(values) ? {} : { border: '2px solid green' }} disabled={checkForErrors(formErrors)} value='Host' />
                 </div>
             </form>
         </section>
