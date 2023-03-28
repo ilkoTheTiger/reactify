@@ -3,7 +3,8 @@
 ## Purpose
 MetniMe is a web-application for shared commutes, where users can create a commute and the rest of the users can join the ride, should they desire to do so and there are spaces available.
 
-## 
+## Intro
+1. The app is based around commutes hosted by users, which can be joined by the rest. Commute creator has the right to edit or delete their commute, while the rest of the community can only join their commute. The active commutes can be found on the Commutes page, and since a vehicle can only have so many seats available, there's a limited amount of people able to join a given commute. Once, the commute is full, the option for joining is going to be closed. Likewise, when a commute takes off, joining will be no longer available even if there are spaces available.
 
 ## Validators Explained
 1. In order to simplify the JSX code blocks inside the components and reuse validation login, validators were exported as functions, here's what they do:
