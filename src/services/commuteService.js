@@ -12,7 +12,7 @@ export const getAll = async () => {
 export const getOne = async (commuteId) => {
     const result = await request.get(`${baseUrl}/${commuteId}`);
     
-    return result;
+    return result.commute;
 };
 
 export const create = async (commuteData) => {

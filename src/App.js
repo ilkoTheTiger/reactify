@@ -41,7 +41,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
                     <Route path='/commutes' element={<Catalog commutes={commutes}/>} />
-                    <Route path='/catalog/:commuteId' element={<CommuteDetails />}></Route>
+                    <Route path='/commutes/:commuteId' element={<CommuteDetails />}></Route>
                     <Route path='/login' element={<h1>Login Page</h1>} />
                     <Route path='/register' element={<h1>Register Page</h1>} />
                     <Route path='/*' element={<h1>404 Page</h1>} />

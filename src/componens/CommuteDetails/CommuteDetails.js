@@ -20,7 +20,7 @@ export const CommuteDetails = () => {
             <div className="info-section">
 
                 <div className="commute-header">
-                    <h1>{commute.from}-{commute.from}</h1>
+                    <h1>{commute.from}-{commute.to}</h1>
                     <span className="seats">Seats: {commute.seats}</span>
                     <p className="phone">{commute.phone}</p>
                 </div>
