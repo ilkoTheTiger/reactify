@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import styles from './CommuteDetails.module.css';
 import * as commuteService from '../../services/commuteService';
 
 export const CommuteDetails = () => {
@@ -15,7 +16,7 @@ export const CommuteDetails = () => {
     }, [commuteId]);
 
     return (
-        <section id="commute-details">
+        <section id={styles.commuteDetails}>
             <h1>Commute Details</h1>
             <div className="info-section">
 
