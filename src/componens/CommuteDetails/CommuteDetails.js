@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { formatDate } from '../../utils/dateUtils';
+
 import styles from './CommuteDetails.module.css';
 import * as commuteService from '../../services/commuteService';
 
@@ -23,11 +25,11 @@ export const CommuteDetails = () => {
                 <div className="commute-header">
                     <h1>{commute.from}-{commute.to}</h1>
                     <span className="seats">Seats: {commute.seats}</span>
-                    <p className="phone">{commute.phone}</p>
+                    <p className="phone">Phone: {commute.phone}</p>
                 </div>
 
                 <p className="time">
-                    {commute.time}
+                {formatDate(commute.time)}
                 </p>
                 {/* <!-- Edit/Delete buttons ( Only for creator of this Commute )  --> */}
                 <div className="buttons">
