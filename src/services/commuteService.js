@@ -9,6 +9,12 @@ export const getAll = async () => {
     return commutes;
 };
 
+export const getOne = async (commuteId) => {
+    const result = await request.get(`${baseUrl}/${commuteId}`);
+    
+    return result;
+};
+
 export const create = async (commuteData) => {
     const result = await request.post(baseUrl, commuteData);
 
