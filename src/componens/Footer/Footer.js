@@ -1,7 +1,9 @@
+import styles from './Footer.module.css';
+
 export const Footer = () => {
     return (
-        <div className="Footer">
-            <p>This is Clean.it project by Ilia Dimchev</p>
+        <div className={styles.footer}>
+            <p>This is MetniMe project by Ilia Dimchev &copy; All rights Reserved!</p>
         </div>
     );
 };
