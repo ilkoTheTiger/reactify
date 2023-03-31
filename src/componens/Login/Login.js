@@ -10,7 +10,7 @@ export const Login = () => {
     const { onLoginSubmit } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
         [FormKeys.Email]: '',
-        [FormKeys.Password]: '',
+        [FormKeys.ConfirmPassword]: '',
     }, onLoginSubmit);
 
 
@@ -36,8 +36,8 @@ export const Login = () => {
                     <input
                         type="password" 
                         id="login-password" 
-                        name={FormKeys.Password}
-                        value={values[FormKeys.Password]}
+                        name={FormKeys.ConfirmPassword}
+                        value={values[FormKeys.ConfirmPassword]}
                         onChange={changeHandler}
                     />
                     <input type="submit" className="btn submit" value="Login" />
