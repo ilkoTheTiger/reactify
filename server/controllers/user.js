@@ -49,16 +49,12 @@ const getUser = async (req, res) => {
 // };
 
 const addUser = async (req, res) => {
-  const { email, password, repass } = req.body;
+  const { email, password } = req.body;
   const data = { email, password };
 
   try {
-    if (password !== repass) {
-      throw new Error('Passwords must match!');
-    };
-
     const createdUser = await userModel.create({ ...data });
-    const user = { ...data, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
+    const user = { email: createdUser.email, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
 
     res.status(200).json({ user });
   } catch (error) {

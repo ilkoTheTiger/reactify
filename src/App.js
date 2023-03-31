@@ -40,16 +40,16 @@ function App() {
         try {
             const result = await authService.login(data);
 
-            setAuth(result);
+            setAuth(result.user);
 
-            navigate('/catalog');
+            navigate('/commutes');
         } catch (error) {
             console.log(error);
         };
     };
 
     const onRegisterSubmit = async (values) => {
-        const { confirmPassword, ...registerData } = values;
+        const { 'confirm-password': confirmPassword , ...registerData } = values;
         if (confirmPassword !== registerData.password) {
             return;
         };
@@ -58,8 +58,9 @@ function App() {
             const result = await authService.register(registerData);
 
             setAuth(result);
+            console.log(result)
 
-            navigate('/catalog');
+            navigate('/commutes');
         } catch (error) {
             console.log(error);
         };
@@ -78,7 +79,7 @@ function App() {
         userId: auth._id,
         token: auth.accessToken,
         userEmail: auth.email,
-        isAuthenticated: !!auth.accessToken,
+        isAuthenticated: !!auth.email,
     };
 
     return (
