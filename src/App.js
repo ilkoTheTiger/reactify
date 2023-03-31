@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { AuthContext } from './contexts/AuthContext';
+import * as authService from './services/authService';
 import * as commuteService from './services/commuteService';
 
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -44,8 +45,8 @@ function App() {
             navigate('/catalog');
         } catch (error) {
             console.log(error);
-        }
-    }
+        };
+    };
 
     const onRegisterSubmit = async (values) => {
         const { confirmPassword, ...registerData } = values;
@@ -61,8 +62,14 @@ function App() {
             navigate('/catalog');
         } catch (error) {
             console.log(error);
-        }
-    }
+        };
+    };
+
+    const onLogout = async () => {
+        // await authService.logout();
+
+        setAuth({});
+    };
 
     const context = {
         onLoginSubmit,
