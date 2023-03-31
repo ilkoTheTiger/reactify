@@ -13,6 +13,7 @@ import { Navigation } from './componens/Navigation/Navigation';
 import { Catalog } from './componens/Catalog/Catalog';
 import { CommuteDetails } from './componens/CommuteDetails/CommuteDetails';
 import { Login } from  './componens/Login/Login';
+import { Register } from './componens/Register/Register';
 
 function App() {
     const navigate = useNavigate();
@@ -35,12 +36,47 @@ function App() {
     };
 
     const onLoginSubmit = async (data) => {
-        console.log(data);
+        try {
+            const result = await authService.login(data);
+
+            setAuth(result);
+
+            navigate('/catalog');
+        } catch (error) {
+            console.log(error);
+        }
     }
+
+    const onRegisterSubmit = async (values) => {
+        const { confirmPassword, ...registerData } = values;
+        if (confirmPassword !== registerData.password) {
+            return;
+        };
+
+        try {
+            const result = await authService.register(registerData);
+
+            setAuth(result);
+
+            navigate('/catalog');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const context = {
+        onLoginSubmit,
+        onRegisterSubmit,
+        onLogout,
+        userId: auth._id,
+        token: auth.accessToken,
+        userEmail: auth.email,
+        isAuthenticated: !!auth.accessToken,
+    };
 
     return (
         <>
-            <AuthContext.Provider value={{ onLoginSubmit }}>
+            <AuthContext.Provider value={context}>
                 <header>
                     <Navigation />
                 </header>
@@ -51,7 +87,7 @@ function App() {
                         <Route path='/commutes' element={<Catalog commutes={commutes} />} />
                         <Route path='/commutes/:commuteId' element={<CommuteDetails />}></Route>
                         <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<h1>Register Page</h1>} />
+                        <Route path='/register' element={<Register />} />
                         <Route path='/*' element={<h1>404 Page</h1>} />
                     </Routes>
                 </main>
