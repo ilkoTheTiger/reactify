@@ -12,7 +12,7 @@ import { Home } from './componens/Home/Home'
 import { Navigation } from './componens/Navigation/Navigation';
 import { Catalog } from './componens/Catalog/Catalog';
 import { CommuteDetails } from './componens/CommuteDetails/CommuteDetails';
-import { Login } from "./components/Login/Login";
+import { Login } from  './componens/Login/Login';
 
 function App() {
     const navigate = useNavigate();
