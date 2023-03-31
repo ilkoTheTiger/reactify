@@ -10,7 +10,7 @@ export const Register = () => {
     const { onRegisterSubmit } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
         [FormKeys.Email]: '',
-        [FormKeys.ConfirmPassword]: '',
+        [FormKeys.Password]: '',
         [FormKeys.ConfirmPassword]: '',
     }, onRegisterSubmit);
 
@@ -35,8 +35,9 @@ export const Register = () => {
                     <input
                         type="password"
                         id="register-password"
-                        name={FormKeys.ConfirmPassword}
-                        value={values[FormKeys.ConfirmPassword]}
+                        name={FormKeys.Password}
+                        value={values[FormKeys.Password]}
+                        onChange={changeHandler}
                     />
 
                     <label htmlFor="con-pass">Confirm Password:</label>
@@ -45,6 +46,7 @@ export const Register = () => {
                         id="confirm-password"
                         name={FormKeys.ConfirmPassword}
                         value={values[FormKeys.ConfirmPassword]}
+                        onChange={changeHandler}
                     />
 
                     <input className="btn submit" type="submit" value="Register" />
