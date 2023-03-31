@@ -19,7 +19,7 @@ const request = async (method, url, data) => {
 
         return result;
     } catch (error) {
-        return {};
+        return alert(error);
     }
 
 };

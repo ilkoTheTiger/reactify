@@ -18,12 +18,46 @@ const getUser = async (req, res) => {
   }
 };
 
+// const addUser = async (req, res) => {
+//   const { firstName, lastName, email, imageUrl, phoneNumber, address } = req.body;
+//   const data = { firstName, lastName, email, imageUrl, phoneNumber };
+
+//   try {
+//     const createdUser = await userModel.create({ ...data, address });
+//     const user = { ...data, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
+
+//     res.status(200).json({ user });
+//   } catch (error) {
+//     errorHandler(error, res, req);
+//   }
+// };
+
+// const updateUser = async (req, res) => {
+//   const { userId } = req.params;
+//   const { firstName, lastName, email, imageUrl, phoneNumber, address } = req.body;
+//   const data = { firstName, lastName, email, imageUrl, phoneNumber, address };
+
+//   try {
+//     const user = await userModel
+//       .findByIdAndUpdate(userId, data, { runValidators: true, new: true })
+//       .select('firstName lastName email imageUrl phoneNumber createdAt updatedAt');
+
+//     res.status(200).json({ user: user.toObject() });
+//   } catch (error) {
+//     errorHandler(error, res, req);
+//   }
+// };
+
 const addUser = async (req, res) => {
-  const { firstName, lastName, email, imageUrl, phoneNumber, address } = req.body;
-  const data = { firstName, lastName, email, imageUrl, phoneNumber };
+  const { email, password, repass } = req.body;
+  const data = { email, password };
 
   try {
-    const createdUser = await userModel.create({ ...data, address });
+    if (password !== repass) {
+      throw new Error('Passwords must match!');
+    };
+
+    const createdUser = await userModel.create({ ...data });
     const user = { ...data, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
 
     res.status(200).json({ user });
@@ -55,6 +89,14 @@ const deleteUser = async (req, res) => {
     await userModel.findByIdAndUpdate(userId, { isDeleted: true });
 
     res.status(200).json({ userId });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
+const logoutUser = async (req, res) => {
+  try {
+    throw new Error ('Logging-out');
   } catch (error) {
     errorHandler(error, res, req);
   }
@@ -103,6 +145,7 @@ const getUsers = async (req, res) => {
 module.exports = {
   getUser,
   addUser,
+  logoutUser,
   updateUser,
   deleteUser,
   getUsers,

@@ -34,7 +34,7 @@ export const Register = () => {
                     <label htmlFor="pass">Password:</label>
                     <input
                         type="password"
-                        id="register-password"
+                        id="password"
                         name={FormKeys.Password}
                         value={values[FormKeys.Password]}
                         onChange={changeHandler}
