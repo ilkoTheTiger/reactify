@@ -1,5 +1,5 @@
 export const FormKeys = {
     Email: 'email',
-    ConfirmPassword: 'password',
+    Password: 'password',
     ConfirmPassword: 'confirm-password'
 }

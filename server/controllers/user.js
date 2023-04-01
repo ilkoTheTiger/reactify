@@ -1,6 +1,7 @@
 const { userModel } = require('../models/User');
 const { errorHandler } = require('../utils/errorHandler');
 const { ValidationError } = require('../utils/createValidationError');
+const userManager = require('../managers/userManager');
 
 const getUser = async (req, res) => {
   const { userId } = req.params;
@@ -18,18 +19,79 @@ const getUser = async (req, res) => {
   }
 };
 
+// const addUser = async (req, res) => {
+//   const { firstName, lastName, email, imageUrl, phoneNumber, address } = req.body;
+//   const data = { firstName, lastName, email, imageUrl, phoneNumber };
+
+//   try {
+//     const createdUser = await userModel.create({ ...data, address });
+//     const user = { ...data, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
+
+//     res.status(200).json({ user });
+//   } catch (error) {
+//     errorHandler(error, res, req);
+//   }
+// };
+
+// const updateUser = async (req, res) => {
+//   const { userId } = req.params;
+//   const { firstName, lastName, email, imageUrl, phoneNumber, address } = req.body;
+//   const data = { firstName, lastName, email, imageUrl, phoneNumber, address };
+
+//   try {
+//     const user = await userModel
+//       .findByIdAndUpdate(userId, data, { runValidators: true, new: true })
+//       .select('firstName lastName email imageUrl phoneNumber createdAt updatedAt');
+
+//     res.status(200).json({ user: user.toObject() });
+//   } catch (error) {
+//     errorHandler(error, res, req);
+//   }
+// };
+
 const addUser = async (req, res) => {
-  const { firstName, lastName, email, imageUrl, phoneNumber, address } = req.body;
-  const data = { firstName, lastName, email, imageUrl, phoneNumber };
+  const { email, password } = req.body;
 
+  const result = await userManager.register(email, password);
+
+  res.json(result);
+
+  // const { email, password } = req.body;
+  // const data = { email, password };
+
+  // try {
+  //   const createdUser = await userModel.create({ ...data });
+  //   const user = { email: createdUser.email, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
+
+  //   res.status(200).json({ user });
+  // } catch (error) {
+  //   errorHandler(error, res, req);
+  // }
+};
+
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const createdUser = await userModel.create({ ...data, address });
-    const user = { ...data, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
+    const result = await userManager.login(email, password);
 
-    res.status(200).json({ user });
+    if (!result) {
+      throw new ValidationError('There is no such user with provided email.', 401);
+    }    
+
+    res.status(200).json({ result: result.toObject() });
   } catch (error) {
     errorHandler(error, res, req);
   }
+  // const { email, password } = JSON.parse(req.body);
+  // const data = { email, password };
+
+  // try {
+  //   const user = await authService.login(data)
+
+  //   res.status(200).json({ user });
+  // } catch (error) {
+  //   errorHandler(error, res, req);
+  // };
 };
 
 const updateUser = async (req, res) => {
@@ -58,6 +120,10 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     errorHandler(error, res, req);
   }
+};
+
+const logoutUser = async (req, res) => {
+  res.json({ok: true});
 };
 
 const getUsers = async (req, res) => {
@@ -103,6 +169,8 @@ const getUsers = async (req, res) => {
 module.exports = {
   getUser,
   addUser,
+  logoutUser,
+  loginUser,
   updateUser,
   deleteUser,
   getUsers,
