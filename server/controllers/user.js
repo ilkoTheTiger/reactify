@@ -1,6 +1,7 @@
 const { userModel } = require('../models/User');
 const { errorHandler } = require('../utils/errorHandler');
 const { ValidationError } = require('../utils/createValidationError');
+const authService = require('../services/authService');
 
 const getUser = async (req, res) => {
   const { userId } = req.params;
@@ -62,6 +63,19 @@ const addUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  const { email, password } = JSON.parse(req.body);
+  const data = { email, password };
+
+  try {
+    const user = await authService.login(data)
+
+    res.status(200).json({ user });
+  } catch (error) {
+    errorHandler(error, res, req);
+  };
+};
+
 const updateUser = async (req, res) => {
   const { userId } = req.params;
   const { firstName, lastName, email, imageUrl, phoneNumber, address } = req.body;
@@ -92,7 +106,7 @@ const deleteUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
   try {
-    throw new Error ('Logging-out');
+    throw new Error('Logging-out');
   } catch (error) {
     errorHandler(error, res, req);
   }
@@ -142,6 +156,7 @@ module.exports = {
   getUser,
   addUser,
   logoutUser,
+  loginUser,
   updateUser,
   deleteUser,
   getUsers,

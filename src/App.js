@@ -40,7 +40,7 @@ function App() {
         try {
             const result = await authService.login(data);
 
-            setAuth(result.user);
+            setAuth(result);
 
             navigate('/commutes');
         } catch (error) {

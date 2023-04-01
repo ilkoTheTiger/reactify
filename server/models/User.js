@@ -1,17 +1,15 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: true,
-      unique: true,
-      match: [/^[A-Za-z0-9_\.]+@[A-Za-z]+\.[A-Za-z]{2,3}$/, 'Email is not valid!'],
+      minLength: 5,
+      required: [true, 'Email is required']
     },
     password: {
       type: String,
       required: true,
-      minLength: [3, 'Password should be at least 3 characters long!'],
     },
     // imageUrl: {
     //   type: String,
@@ -31,10 +29,15 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-const userModel = model('User', userSchema);
-module.exports = {
-  userModel,
-};
+// const userModel = model('User', userSchema);
+// module.exports = {
+//   userModel,
+// };
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
+
 
 // const userSchema = new Schema(
 //   {
