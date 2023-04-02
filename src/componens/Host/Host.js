@@ -85,8 +85,6 @@ export const Host = ({
             return alert('All fields are required!');
         };
 
-        console.log(values);
-
         onHostCommuteSubmit(values);
     };
 
