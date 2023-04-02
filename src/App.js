@@ -15,6 +15,7 @@ import { Catalog } from './componens/Catalog/Catalog';
 import { CommuteDetails } from './componens/CommuteDetails/CommuteDetails';
 import { Login } from  './componens/Login/Login';
 import { Register } from './componens/Register/Register';
+import { Logout } from './componens/Logout/Logout';
 
 function App() {
     const navigate = useNavigate();
@@ -95,6 +96,7 @@ function App() {
                         <Route path='/commutes/:commuteId' element={<CommuteDetails />}></Route>
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/logout' element={<Logout />} />
                         <Route path='/*' element={<h1>404 Page</h1>} />
                     </Routes>
                 </main>
