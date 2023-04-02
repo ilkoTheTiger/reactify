@@ -30,8 +30,7 @@ function App() {
 
     const onHostCommuteSubmit = async (data) => {
         const createdCommute = await commuteService.create(data);
-
-        setCommutes(state => [...state, createdCommute.commute]);
+        setCommutes(state => [...state, createdCommute]);
 
         navigate('/commutes');
     };
