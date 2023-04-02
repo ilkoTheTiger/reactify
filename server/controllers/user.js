@@ -50,23 +50,18 @@ const getUser = async (req, res) => {
 // };
 
 const addUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, repass } = req.body;
+  try {
+    if (password !== repass) {
+      throw new ValidationError('Password mismatch', 401);
+    }
 
-  const result = await userManager.register(email, password);
+    const result = await userManager.register(email, password);
 
-  res.json(result);
-
-  // const { email, password } = req.body;
-  // const data = { email, password };
-
-  // try {
-  //   const createdUser = await userModel.create({ ...data });
-  //   const user = { email: createdUser.email, _id: createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
-
-  //   res.status(200).json({ user });
-  // } catch (error) {
-  //   errorHandler(error, res, req);
-  // }
+    res.json({ result: result.toObject() });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
 };
 
 const loginUser = async (req, res) => {
@@ -76,22 +71,16 @@ const loginUser = async (req, res) => {
 
     if (!result) {
       throw new ValidationError('There is no such user with provided email.', 401);
-    }    
+    }
 
     res.status(200).json({ result: result.toObject() });
   } catch (error) {
     errorHandler(error, res, req);
   }
-  // const { email, password } = JSON.parse(req.body);
-  // const data = { email, password };
+};
 
-  // try {
-  //   const user = await authService.login(data)
-
-  //   res.status(200).json({ user });
-  // } catch (error) {
-  //   errorHandler(error, res, req);
-  // };
+const logoutUser = async (req, res) => {
+  res.json({ ok: true });
 };
 
 const updateUser = async (req, res) => {
@@ -120,10 +109,6 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     errorHandler(error, res, req);
   }
-};
-
-const logoutUser = async (req, res) => {
-  res.json({ok: true});
 };
 
 const getUsers = async (req, res) => {

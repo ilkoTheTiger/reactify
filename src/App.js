@@ -56,9 +56,9 @@ function App() {
 
         try {
             const result = await authService.register(registerData);
-
+            console.log(JSON.stringify(registerData))
             setAuth(result);
-            console.log(result)
+            
 
             navigate('/commutes');
         } catch (error) {
@@ -79,7 +79,7 @@ function App() {
         userId: auth._id,
         token: auth.accessToken,
         userEmail: auth.email,
-        isAuthenticated: !!auth.email,
+        isAuthenticated: !!auth.accessToken,
     };
 
     return (

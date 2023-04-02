@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('../lib/jsonwebtoken');
 const User = require('../models/User');
 
-const SECRET = 'victoriasecret';
+const { SECRET } = require('../constants');
 
 exports.login = async (email, password) => {
     const user = await User.findOne({ email });
