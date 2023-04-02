@@ -1,4 +1,4 @@
-import styles from '../Catalog.module.css';
+import styles from './CatalogItem.module.css';
 import { Link } from "react-router-dom";
 import { formatDate } from '../../../utils/dateUtils';
 
