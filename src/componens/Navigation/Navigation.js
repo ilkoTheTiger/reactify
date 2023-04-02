@@ -13,18 +13,18 @@ export const Navigation = () => {
                 <li><NavLink style={({ isActive }) => ({ color: isActive ? '#13bc9c' : '' })} to='/'><img src="https://drive.google.com/uc?id=1YtESxvOdQR4C4MLY7qGLq_wAHDFvU8Xd" alt="CleanIt Logo from Google Drive" /></NavLink></li>
                 <li><NavLink style={({ isActive }) => ({ color: isActive ? '#13bc9c' : '' })} to='/'><i className="fa fa-home" aria-hidden="true"></i></NavLink></li>
                 <li><NavLink style={({ isActive }) => ({ color: isActive ? '#13bc9c' : '' })} to='/commutes'>Commutes</NavLink></li>
-                {!isAuthenticated && (
+                {isAuthenticated && (
                     <>
                         <li><NavLink style={({ isActive }) => ({ color: isActive ? '#13bc9c' : '' })} to='/host'>Host</NavLink></li>
                         <li><NavLink to='/logout'>Logout</NavLink></li>
                     </>
-                )};
+                )}
                 {!isAuthenticated && (
                     <>
                         <li><NavLink style={({ isActive }) => ({ color: isActive ? '#13bc9c' : '' })} to='/login'>Login</NavLink></li>
                         <li><NavLink style={({ isActive }) => ({ color: isActive ? '#13bc9c' : '' })} to='/register'>Register</NavLink></li>
                     </>
-                )};
+                )}
             </ul>
         </nav>
     );
