@@ -1,4 +1,3 @@
-import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
 import styles from './Host.module.css';
 import { currentDateTime, maxDate } from '../../utils/dateUtils';
@@ -9,13 +8,13 @@ export const Host = ({
 }) => {
     const now = currentDateTime();
     const max = maxDate();
-    const {values, changeHandler, onSubmit} = useForm({
+    const [values, setValues] = useState({
         from: '',
         to: '',
         seats: '',
         phone: '',
         time: ''
-    }, onHostCommuteSubmit);
+    });
 
     const [formErrors, setFormErrors] = useState({
         from: '',
@@ -24,6 +23,10 @@ export const Host = ({
         phone: '',
         time: ''
     });
+
+    const onChangeHandler = (e) => {
+        setValues(state => ({ ...state, [e.target.name]: e.target.value }))
+    };
 
     const formValidate = (e) => {
         const value = e.target.value;
@@ -72,13 +75,24 @@ export const Host = ({
             errors.time = '';
         };
 
-        setFormErrors(errors);
+        setFormErrors(errors)
+    }
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+
+        if (hasEmptyProperty(values)) {
+            return alert('All fields are required!');
+        };
+
+        onHostCommuteSubmit(values);
     };
+
 
     return (
         <section className={styles.hostContainer}>
             <h2>Host a Commute</h2>
-            <form className={styles.host} onSubmit={onSubmit}>
+            <form className={styles.host} onSubmit={onSubmitHandler}>
                 <div className={styles.formRow}>
                     <label htmlFor='from'>Departing From</label>
                     <div className={styles.formInput}>
@@ -88,7 +102,7 @@ export const Host = ({
                             name='from'
                             id='from'
                             value={values.from}
-                            onChange={changeHandler}
+                            onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter city of departure..'
                             style={formErrors.from ? { borderColor: 'red' } : (values.from.length > 2 && !/\d/.test(values.from)) ? { borderColor: 'green' } : {}}
@@ -110,7 +124,7 @@ export const Host = ({
                             name='to'
                             id='to'
                             value={values.to}
-                            onChange={changeHandler}
+                            onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter city of arrival..'
                             style={formErrors.to ? { borderColor: 'red' } : (values.to.length > 2 && !/\d/.test(values.to)) ? { borderColor: 'green' } : {}}
@@ -132,7 +146,7 @@ export const Host = ({
                             name='seats'
                             id='seats'
                             value={values.seats}
-                            onChange={changeHandler}
+                            onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter available seats..'
                             style={(formErrors.seats || values.seats.length > 1) ? { borderColor: 'red' } : (values.seats.length === 1 && !isNaN(values.seats)) ? { borderColor: 'green' } : {}}
@@ -154,7 +168,7 @@ export const Host = ({
                             name='phone'
                             id='phone'
                             value={values.phone}
-                            onChange={changeHandler}
+                            onChange={onChangeHandler}
                             onBlur={formValidate}
                             placeholder='Enter phone number..'
                             style={formErrors.phone ? { borderColor: 'red' } : (values.phone.length === 10) ? { borderColor: 'green' } : {}}
@@ -178,7 +192,7 @@ export const Host = ({
                             max={max}
                             id='time'
                             value={values.time}
-                            onChange={changeHandler}
+                            onChange={onChangeHandler}
                             onBlur={formValidate}
                             style={formErrors.time ? { borderColor: 'red' } : values.time ? { borderColor: 'green' } : {}}
                         />

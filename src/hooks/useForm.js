@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { hasEmptyProperty } from '../utils/validators';
 
 export const useForm = (initialValues, onSubmitHandler) => {
     const [values, setValues] = useState(initialValues);
@@ -9,6 +10,10 @@ export const useForm = (initialValues, onSubmitHandler) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (hasEmptyProperty(values)) {
+            return alert('All fields are required!');
+        };
 
         onSubmitHandler(values);
     };
