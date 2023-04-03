@@ -1,41 +1,27 @@
-import { requestFactory } from "./requester"
+import { requestFactory } from './requester';
 
-const baseUrl = 'http://localhost:3030/data/games'
+const baseUrl = 'http://localhost:3030/data/comments'
 
-export const gameServiceFactory = (token) => {
+export const commentServiceFactory = (token) => {
     const request = requestFactory(token);
 
-    const getAll = async () => {
-        const query = encodeURIComponent(`gameId="${gameId}"`);
+    const getAll = async (commuteId) => {
+        const query = encodeURIComponent(`commuteId="${commuteId}"`);
 
         const result = await request.get(`${baseUrl}?where=${query}`);
-        const commutes = Object.values(result);
-    
-        return commutes;
+        const comments = Object.values(result);
+
+        return comments;
     };
 
-    const getOne = async (gameId) => {
-        const result = await request.get(`${baseUrl}/${gameId}`);
-
-        return result;
-    };
-
-    const create = async (gameData) => {
-        const result = await request.post(baseUrl, gameData);
-
-        return result;
-    };
-
-    const addComment = async (gameId, data) => {
-        const result = await request.post(`${baseUrl}/${gameId}/comments`, data);
+    const create = async (data) => {
+        const result = await request.post(baseUrl, data);
 
         return result;
     };
 
     return {
         getAll,
-        getOne,
         create,
-        addComment
-    };
-};
+    }
+}

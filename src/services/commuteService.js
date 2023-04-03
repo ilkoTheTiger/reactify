@@ -1,28 +1,41 @@
-import * as request from "./requester"
+import { requestFactory } from "./requester"
 
-// const baseUrl = 'https://server-production-8381.up.railway.app/api/commutes'
-const baseUrl = 'http://localhost:3030/jsonstore/commutes'
+const baseUrl = 'http://localhost:3030/data/commutes'
 
-export const getAll = async () => {
-    const result = await request.get(baseUrl);
-    const commutes = Object.values(result);
-    return commutes;
-};
+export const commuteServiceFactory = (token) => {
+    const request = requestFactory(token);
 
-export const getOne = async (commuteId) => {
-    const result = await request.get(`${baseUrl}/${commuteId}`);
+    const getAll = async () => {
+        const query = encodeURIComponent(`commuteId="${commuteId}"`);
+
+        const result = await request.get(`${baseUrl}?where=${query}`);
+        const commutes = Object.values(result);
     
-    return result;
-};
+        return commutes;
+    };
 
-export const create = async (commuteData) => {
-    const result = await request.post(baseUrl, commuteData);
+    const getOne = async (commuteId) => {
+        const result = await request.get(`${baseUrl}/${commuteId}`);
 
-    return result;
-};
+        return result;
+    };
 
-export const addComment = async (gameId, data) => {
-    const result = await request.post(`${baseUrl}/${gameId}/comments`, data);
+    const create = async (gameData) => {
+        const result = await request.post(baseUrl, gameData);
 
-    return result;
+        return result;
+    };
+
+    const addComment = async (commuteId, data) => {
+        const result = await request.post(`${baseUrl}/${commuteId}/comments`, data);
+
+        return result;
+    };
+
+    return {
+        getAll,
+        getOne,
+        create,
+        addComment
+    };
 };
