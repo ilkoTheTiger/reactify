@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { AuthContext } from './contexts/AuthContext';
-import { commuteServiceFactory } from './services/gameService';
+import { commuteServiceFactory } from './services/commuteService';
 import { authServiceFactory } from './services/authService';
 
 import { Routes, Route, useNavigate } from 'react-router-dom';
