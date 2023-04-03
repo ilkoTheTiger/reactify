@@ -6,9 +6,7 @@ export const commuteServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async () => {
-        const query = encodeURIComponent(`commuteId="${commuteId}"`);
-
-        const result = await request.get(`${baseUrl}?where=${query}`);
+        const result = await request.get(`${baseUrl}`);
         const commutes = Object.values(result);
     
         return commutes;
@@ -20,8 +18,8 @@ export const commuteServiceFactory = (token) => {
         return result;
     };
 
-    const create = async (gameData) => {
-        const result = await request.post(baseUrl, gameData);
+    const create = async (commuteData) => {
+        const result = await request.post(baseUrl, commuteData);
 
         return result;
     };

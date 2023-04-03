@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useService } from '../../hooks/useService';
 
 import { formatDate } from '../../utils/dateUtils';
 
 import styles from './CommuteDetails.module.css';
-import * as commuteService from '../../services/commuteService';
+import { commuteServiceFactory } from '../../services/commuteService';
+import { commentServiceFactory } from '../../services/commentService';
 
 export const CommuteDetails = () => {
     const { commuteId } = useParams();
     const [commute, setCommute] = useState({});
+    const commuteService = useService(commuteServiceFactory);
+    const commentService = useService(commentServiceFactory);
 
     useEffect(() => {
         commuteService.getOne(commuteId)
@@ -29,7 +33,7 @@ export const CommuteDetails = () => {
                 </div>
 
                 <p className="time">
-                {formatDate(commute.time)}
+                    {formatDate(commute.time)}
                 </p>
                 {/* <!-- Edit/Delete buttons ( Only for creator of this Commute )  --> */}
                 <div className="buttons">
