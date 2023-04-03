@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import { AuthContext } from './contexts/AuthContext';
-import * as authService from './services/authService';
-import * as commuteService from './services/commuteService';
+import { commuteServiceFactory } from './services/gameService';
+import { authServiceFactory } from './services/authService';
 
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
@@ -21,6 +21,8 @@ function App() {
     const navigate = useNavigate();
     const [commutes, setCommutes] = useState([]);
     const [auth, setAuth] = useState({});
+    const commuteService = commuteServiceFactory(auth.accessToken);
+    const authService = authServiceFactory(auth.accessToken);
 
     useEffect(() => {
         commuteService.getAll()
@@ -67,7 +69,7 @@ function App() {
     };
 
     const onLogout = async () => {
-        // await authService.logout();
+        await authService.logout();
 
         setAuth({});
     };
