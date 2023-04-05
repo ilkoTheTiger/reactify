@@ -30,6 +30,8 @@ export const commuteServiceFactory = (token) => {
         return result;
     };
 
+    const edit = (commuteId, data) => request.put(`${baseUrl}/${commuteId}`, data);
+
     const deleteCommute = (commuteId) => request.delete(`${baseUrl}/${commuteId}`); 
 
     return {
@@ -37,6 +39,7 @@ export const commuteServiceFactory = (token) => {
         getOne,
         create,
         addComment,
+        edit,
         delete: deleteCommute,
     };
 };
