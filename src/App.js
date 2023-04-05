@@ -13,6 +13,7 @@ import { Home } from './componens/Home/Home'
 import { Navigation } from './componens/Navigation/Navigation';
 import { Catalog } from './componens/Catalog/Catalog';
 import { CommuteDetails } from './componens/CommuteDetails/CommuteDetails';
+import { Edit } from  './componens/Edit/Edit';
 import { Login } from  './componens/Login/Login';
 import { Register } from './componens/Register/Register';
 import { Logout } from './componens/Logout/Logout';
@@ -37,6 +38,14 @@ function App() {
         setCommutes(state => [...state, createdCommute]);
 
         navigate('/commutes');
+    };
+
+    const onCommuteEditSubmit = async (values) => {
+        const result = await commuteService.edit(values._id, values);
+
+        setGames(state => state.map(x => x._id === values._id ? result : x));
+
+        navigate(`/commutes/${values._id}`);
     };
 
     const onLoginSubmit = async (data) => {
@@ -96,6 +105,7 @@ function App() {
                         <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
                         <Route path='/commutes' element={<Catalog commutes={commutes} />} />
                         <Route path='/commutes/:commuteId' element={<CommuteDetails setDeletedCommute={setDeletedCommute} />}></Route>
+                        <Route path='/commutes/:commuteId/edit' element={<Edit onCommuteEditSubmit={onCommuteEditSubmit} />}></Route>                        
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/logout' element={<Logout />} />

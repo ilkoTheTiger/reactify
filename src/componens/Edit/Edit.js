@@ -1,13 +1,13 @@
 import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
-import styles from './Host.module.css';
+import styles from './Edit.module.css';
 import { currentDateTime, maxDate } from '../../utils/dateUtils';
 import { checkForErrors, hasEmptyProperty } from '../../utils/validators';
 
 import { useService } from "../../hooks/useService";
 import { commuteServiceFactory } from "../../services/gameService";
 
-export const Host = ({
+export const Edit = ({
     onEditCommuteSubmit,
 }) => {
     const { commuteId } = useParams();
@@ -90,9 +90,9 @@ export const Host = ({
     };
 
     return (
-        <section className={styles.hostContainer}>
-            <h2>Host a Commute</h2>
-            <form className={styles.host} onSubmit={onSubmit}>
+        <section className={styles.editContainer}>
+            <h2>Edit a Commute</h2>
+            <form className={styles.edit} onSubmit={onSubmit}>
                 <div className={styles.formRow}>
                     <label htmlFor='from'>Departing From</label>
                     <div className={styles.formInput}>
@@ -205,7 +205,7 @@ export const Host = ({
                 </div>
 
                 <div >
-                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : hasEmptyProperty(values) ? {} : { border: '2px solid green' }} disabled={checkForErrors(formErrors)} value='Host' />
+                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : hasEmptyProperty(values) ? {} : { border: '2px solid green' }} disabled={checkForErrors(formErrors)} value='Save Changes' />
                 </div>
             </form>
         </section>
