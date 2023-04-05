@@ -46,7 +46,7 @@ function App() {
 
             navigate('/commutes');
         } catch (error) {
-            console.log(error);
+            return alert(error.message);
         };
     };
 
@@ -58,13 +58,12 @@ function App() {
 
         try {
             const result = await authService.register(registerData);
-            console.log(JSON.stringify(registerData))
-            setAuth(result);
-            
+
+            setAuth(result);            
 
             navigate('/commutes');
         } catch (error) {
-            console.log(error);
+            return alert(error.message);
         };
     };
 
