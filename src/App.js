@@ -21,6 +21,7 @@ function App() {
     const navigate = useNavigate();
     const [commutes, setCommutes] = useState([]);
     const [auth, setAuth] = useState({});
+    const [deletedCommute, setDeletedCommute] = useState({});
     const commuteService = commuteServiceFactory(auth.accessToken);
     const authService = authServiceFactory(auth.accessToken);
 
@@ -94,7 +95,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
                         <Route path='/commutes' element={<Catalog commutes={commutes} />} />
-                        <Route path='/commutes/:commuteId' element={<CommuteDetails />}></Route>
+                        <Route path='/commutes/:commuteId' element={<CommuteDetails setDeletedCommute={setDeletedCommute} />}></Route>
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/logout' element={<Logout />} />

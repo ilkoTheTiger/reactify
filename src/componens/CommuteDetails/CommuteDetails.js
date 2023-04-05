@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useService } from '../../hooks/useService';
 
@@ -26,7 +26,7 @@ export const CommuteDetails = ({
             })
     }, [commuteId]);
 
-    const isOwner = game._ownerId === userId;
+    const isOwner = commute._ownerId === userId;
 
     const onDeleteClick = async () => {
         await commuteService.delete(commute._id);
