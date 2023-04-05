@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useService } from '../../hooks/useService';
 
 import { formatDate } from '../../utils/dateUtils';
@@ -7,12 +7,17 @@ import { formatDate } from '../../utils/dateUtils';
 import styles from './CommuteDetails.module.css';
 import { commuteServiceFactory } from '../../services/commuteService';
 import { commentServiceFactory } from '../../services/commentService';
+import { AuthContext } from '../../contexts/AuthContext';
 
-export const CommuteDetails = () => {
+export const CommuteDetails = ({
+    setDeletedCommute
+}) => {
+    const { userId } = useContext(AuthContext);
     const { commuteId } = useParams();
     const [commute, setCommute] = useState({});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
+    const navigate = useNavigate();
 
     useEffect(() => {
         commuteService.getOne(commuteId)
@@ -20,6 +25,16 @@ export const CommuteDetails = () => {
                 setCommute(result);
             })
     }, [commuteId]);
+
+    const isOwner = game._ownerId === userId;
+
+    const onDeleteClick = async () => {
+        await commuteService.delete(commute._id);
+
+        setDeletedCommute(commute);
+
+        navigate('/commutes');
+    };
 
     return (
         <section id={styles.commuteDetails}>
@@ -35,11 +50,12 @@ export const CommuteDetails = () => {
                 <p className="time">
                     {formatDate(commute.time)}
                 </p>
-                {/* <!-- Edit/Delete buttons ( Only for creator of this Commute )  --> */}
-                <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
-                </div>
+                {isOwner && (
+                    <div className="buttons">
+                        <a href="#" className="button">Edit</a>
+                        <button className="button" onClick={onDeleteClick}>Delete</button>
+                    </div>
+                )}
             </div>
         </section>
     );
