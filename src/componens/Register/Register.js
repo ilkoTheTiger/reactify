@@ -34,8 +34,6 @@ export const Register = () => {
             errors.email = ''
         }
 
-        console.log(/^[A-Za-z0-9_.]+@[A-Za-z]+.[A-Za-z]{2,3}$/.test(values.email));
-
         setFormErrors(errors);
     };
 
@@ -44,12 +42,12 @@ export const Register = () => {
             <h2>Register</h2>
             <form className={styles.register} method="POST" onSubmit={onSubmit}>
                 <div className={styles.formRow}>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor={[FormKeys.Email]}>Email:</label>
                     <div className={styles.formInput}>
                         <span style={formErrors.email ? { borderColor: 'red' } : (values.email.length > 2 && /^[A-Za-z0-9_.]+@[A-Za-z]+.[A-Za-z]{2,3}$/.test(values.email)) ? { borderColor: 'green' } : {}}><i className='fa-solid fa-at'></i></span>
                         <input
-                            type="email"
-                            id="email"
+                            type={[FormKeys.Email]}
+                            id={[FormKeys.Email]}
                             placeholder="Enter your email.."
                             name={FormKeys.Email}
                             value={values[FormKeys.Email]}
@@ -64,16 +62,30 @@ export const Register = () => {
                         </p>
                     }
                 </div>
-                <label htmlFor="pass">Password:</label>
-                <input
-                    type="password"
-                    id="register-password"
-                    placeholder="Enter your password.."
-                    name={FormKeys.Password}
-                    value={values[FormKeys.Password]}
-                    onChange={changeHandler}
-                    onBlur={formValidate}
-                />
+
+                <div className={styles.formRow}>
+                    <label htmlFor={[FormKeys.Password]}>Password:</label>
+                    <div className={styles.formInput}>
+                        <span style={formErrors.password ? { borderColor: 'red' } : (values.password.length > 2 && values.password.length < 26) ? { borderColor: 'green' } : {}}><i className='fa-solid fa-lock '></i></span>
+
+                        <input
+                            type={[FormKeys.Password]}
+                            id="register-password"
+                            placeholder="Enter your password.."
+                            name={FormKeys.Password}
+                            value={values[FormKeys.Password]}
+                            onChange={changeHandler}
+                            onBlur={formValidate}
+                            style={formErrors.password ? { borderColor: 'red' } : (values.password.length > 2 && values.password.length < 26) ? { borderColor: 'green' } : {}}
+
+                        />
+                    </div>
+                    {formErrors.password &&
+                        <p className={styles.formError}>
+                            {formErrors.password}
+                        </p>
+                    }
+                </div>
 
                 <label htmlFor="con-pass">Confirm Password:</label>
                 <input
