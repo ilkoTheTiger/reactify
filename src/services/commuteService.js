@@ -2,7 +2,7 @@ import { requestFactory } from "./requester"
 
 const baseUrl = 'http://localhost:3030/data/commutes'
 
-export const commuteServiceFactory = (token) => {
+export const    commuteServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async () => {
@@ -24,12 +24,6 @@ export const commuteServiceFactory = (token) => {
         return result;
     };
 
-    const addComment = async (commuteId, data) => {
-        const result = await request.post(`${baseUrl}/${commuteId}/comments`, data);
-
-        return result;
-    };
-
     const edit = (commuteId, data) => request.put(`${baseUrl}/${commuteId}`, data);
 
     const deleteCommute = (commuteId) => request.delete(`${baseUrl}/${commuteId}`); 
@@ -38,7 +32,6 @@ export const commuteServiceFactory = (token) => {
         getAll,
         getOne,
         create,
-        addComment,
         edit,
         delete: deleteCommute,
     };
