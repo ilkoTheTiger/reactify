@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useService } from '../../hooks/useService';
 
 import { formatDate } from '../../utils/dateUtils';
@@ -52,7 +52,7 @@ export const CommuteDetails = ({
                 </p>
                 {isOwner && (
                     <div className="buttons">
-                        <a href={`/commutes/${commute._id}/edit`} className="button">Edit</a>
+                        <Link to={`/commutes/${commute._id}/edit`} className="button">Edit</Link>
                         <button className="button" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
