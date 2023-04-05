@@ -43,7 +43,7 @@ function App() {
     const onCommuteEditSubmit = async (values) => {
         const result = await commuteService.edit(values._id, values);
 
-        setGames(state => state.map(x => x._id === values._id ? result : x));
+        setCommutes(state => state.map(x => x._id === values._id ? result : x));
 
         navigate(`/commutes/${values._id}`);
     };
