@@ -52,7 +52,7 @@ export const CommuteDetails = ({
                 </p>
                 {isOwner && (
                     <div className="buttons">
-                        <a href="#" className="button">Edit</a>
+                        <a href={`/commutes/${commute._id}/edit`} className="button">Edit</a>
                         <button className="button" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
