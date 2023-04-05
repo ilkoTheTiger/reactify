@@ -110,7 +110,7 @@ export const Register = () => {
 
                         <input
                             type={[FormKeys.Password]}
-                            id="register-password"
+                            id="register-confirm-password"
                             placeholder="Repeat your password.."
                             name={FormKeys.ConfirmPassword}
                             value={values[FormKeys.ConfirmPassword]}

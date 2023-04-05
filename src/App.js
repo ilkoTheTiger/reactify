@@ -51,7 +51,7 @@ function App() {
     };
 
     const onRegisterSubmit = async (values) => {
-        const { 'confirm-password': confirmPassword , ...registerData } = values;
+        const {confirmPassword , ...registerData } = values;
         if (confirmPassword !== registerData.password) {
             return;
         };
