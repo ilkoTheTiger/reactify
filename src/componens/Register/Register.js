@@ -7,6 +7,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import styles from './Register.module.css';
 import { FormKeys } from "../../utils/formKeys";
 
+import { checkForErrors, hasEmptyProperty } from '../../utils/validators';
+
 export const Register = () => {
     const { onRegisterSubmit } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
@@ -125,7 +127,9 @@ export const Register = () => {
                     }
                 </div>
 
-                <input className="btn submit" type="submit" value="Register" />
+                <div >
+                    <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : hasEmptyProperty(values) ? {} : { border: '2px solid green' }} disabled={checkForErrors(formErrors)} value='Register' />
+                </div>
                 <div>
                     <p className="field">
                         <span>If you already have profile click <Link to="/login">here</Link></span>
