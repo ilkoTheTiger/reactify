@@ -132,7 +132,7 @@ export const Register = () => {
                 </div>
                 <div>
                     <p>
-                        <span>If you already have profile click <Link className={styles.link} to="/login">here</Link></span>
+                        <span>If you already have an account <Link className={styles.link} to="/login">here</Link></span>
                     </p>
                 </div>
             </form>
