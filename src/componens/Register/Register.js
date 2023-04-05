@@ -34,6 +34,20 @@ export const Register = () => {
             errors.email = ''
         }
 
+        if (target === 'password' && (value.length < 3 || value.length > 26)) {
+            errors.password = 'Password must be between 3 and 26 letters!';
+        } else if (target === 'password' && !(value.length < 3 || value.length > 26)) {
+            errors.password = ''
+        }
+
+        if (target === 'confirmPassword' && (value.length < 3 || value.length > 26)) {
+            errors.confirmPassword = 'Confirm Password must be between 3 and 26 letters!';
+        } else if (target === 'confirmPassword' && value !== values.password) {
+            errors.confirmPassword = 'Confirm Password must match your Password!';
+        } else if (target === 'confirmPassword' && value === values.password && !(value.length < 3 || value.length > 26)) {
+            errors.confirmPassword = ''
+        }
+
         setFormErrors(errors);
     };
 
@@ -66,7 +80,7 @@ export const Register = () => {
                 <div className={styles.formRow}>
                     <label htmlFor={[FormKeys.Password]}>Password:</label>
                     <div className={styles.formInput}>
-                        <span style={formErrors.password ? { borderColor: 'red' } : (values.password.length > 2 && values.password.length < 26) ? { borderColor: 'green' } : {}}><i className='fa-solid fa-lock '></i></span>
+                        <span style={formErrors.password ? { borderColor: 'red' } : (values.password.length > 2 && values.password.length < 27) ? { borderColor: 'green' } : {}}><i className='fa-solid fa-lock '></i></span>
 
                         <input
                             type={[FormKeys.Password]}
@@ -76,7 +90,7 @@ export const Register = () => {
                             value={values[FormKeys.Password]}
                             onChange={changeHandler}
                             onBlur={formValidate}
-                            style={formErrors.password ? { borderColor: 'red' } : (values.password.length > 2 && values.password.length < 26) ? { borderColor: 'green' } : {}}
+                            style={formErrors.password ? { borderColor: 'red' } : (values.password.length > 2 && values.password.length < 27) ? { borderColor: 'green' } : {}}
 
                         />
                     </div>
@@ -87,16 +101,29 @@ export const Register = () => {
                     }
                 </div>
 
-                <label htmlFor="con-pass">Confirm Password:</label>
-                <input
-                    type="password"
-                    id="confirm-password"
-                    placeholder="Repeat your password.."
-                    name={FormKeys.ConfirmPassword}
-                    value={values[FormKeys.ConfirmPassword]}
-                    onChange={changeHandler}
-                    onBlur={formValidate}
-                />
+                <div className={styles.formRow}>
+                    <label htmlFor={[FormKeys.ConfirmPassword]}>Confirm Password:</label>
+                    <div className={styles.formInput}>
+                        <span style={formErrors.confirmPassword ? { borderColor: 'red' } : (values.confirmPassword.length > 2 && values.confirmPassword.length < 27) ? { borderColor: 'green' } : {}}><i className='fa-solid fa-unlock '></i></span>
+
+                        <input
+                            type={[FormKeys.Password]}
+                            id="register-password"
+                            placeholder="Enter your password.."
+                            name={FormKeys.ConfirmPassword}
+                            value={values[FormKeys.ConfirmPassword]}
+                            onChange={changeHandler}
+                            onBlur={formValidate}
+                            style={formErrors.confirmPassword ? { borderColor: 'red' } : (values.confirmPassword.length > 2 && values.confirmPassword.length < 27) ? { borderColor: 'green' } : {}}
+
+                        />
+                    </div>
+                    {formErrors.confirmPassword &&
+                        <p className={styles.formError}>
+                            {formErrors.confirmPassword}
+                        </p>
+                    }
+                </div>
 
                 <input className="btn submit" type="submit" value="Register" />
                 <div>
