@@ -111,7 +111,7 @@ export const Register = () => {
                         <input
                             type={[FormKeys.Password]}
                             id="register-password"
-                            placeholder="Enter your password.."
+                            placeholder="Repeat your password.."
                             name={FormKeys.ConfirmPassword}
                             value={values[FormKeys.ConfirmPassword]}
                             onChange={changeHandler}
@@ -131,8 +131,8 @@ export const Register = () => {
                     <input className={styles.inputSubmit} type='submit' style={checkForErrors(formErrors) ? { border: '3px solid red' } : hasEmptyProperty(values) ? {} : { border: '2px solid green' }} disabled={checkForErrors(formErrors)} value='Register' />
                 </div>
                 <div>
-                    <p className="field">
-                        <span>If you already have profile click <Link to="/login">here</Link></span>
+                    <p>
+                        <span>If you already have profile click <Link className={styles.link} to="/login">here</Link></span>
                     </p>
                 </div>
             </form>

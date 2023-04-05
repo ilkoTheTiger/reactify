@@ -85,3 +85,14 @@
   div .inputSubmit:hover {
     background-color: var(--clr-fill);
   }
+
+  a.link {
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: var(--clr-fill);
+  }
+
+  a.link:hover {
+    text-decoration: none;
+    color: var(--clr-primary);
+  }
