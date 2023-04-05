@@ -36,7 +36,7 @@ export const CommuteDetails = ({
     const onCommentSubmit = async (e) => {
         e.preventDefault();
 
-        const result = await commentService.create(commuteId, {
+        const result = await commuteService.addComment(commuteId, {
             username,
             comment
         });
