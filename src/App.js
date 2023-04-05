@@ -40,7 +40,7 @@ function App() {
         navigate('/commutes');
     };
 
-    const onCommuteEditSubmit = async (values) => {
+    const onEditCommuteSubmit = async (values) => {
         const result = await commuteService.edit(values._id, values);
 
         setCommutes(state => state.map(x => x._id === values._id ? result : x));
@@ -105,7 +105,7 @@ function App() {
                         <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
                         <Route path='/commutes' element={<Catalog commutes={commutes} />} />
                         <Route path='/commutes/:commuteId' element={<CommuteDetails setDeletedCommute={setDeletedCommute} />}></Route>
-                        <Route path='/commutes/:commuteId/edit' element={<Edit onCommuteEditSubmit={onCommuteEditSubmit} />}></Route>                        
+                        <Route path='/commutes/:commuteId/edit' element={<Edit onEditCommuteSubmit={onEditCommuteSubmit} />}></Route>                        
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/logout' element={<Logout />} />
