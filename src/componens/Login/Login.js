@@ -44,8 +44,8 @@ export const Login = () => {
     };
 
     return (
-        <section id="register-page" className={styles.loginContainer}>
-            <h2>Register</h2>
+        <section id="login-page" className={styles.loginContainer}>
+            <h2>Login</h2>
             <form className={styles.login} method="POST" onSubmit={onSubmit}>
                 <div className={styles.formRow}>
                     <label htmlFor={[FormKeys.Email]}>Email:</label>
