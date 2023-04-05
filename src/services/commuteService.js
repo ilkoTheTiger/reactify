@@ -30,10 +30,13 @@ export const commuteServiceFactory = (token) => {
         return result;
     };
 
+    const deleteCommute = (commuteId) => request.delete(`${baseUrl}/${commuteId}`); 
+
     return {
         getAll,
         getOne,
         create,
-        addComment
+        addComment,
+        delete: deleteCommute,
     };
 };

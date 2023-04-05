@@ -30,7 +30,7 @@ function App() {
             .then(result => {
                 setCommutes(result);
             });
-    }, []);
+    }, [deletedCommute]);
 
     const onHostCommuteSubmit = async (data) => {
         const createdCommute = await commuteService.create(data);
