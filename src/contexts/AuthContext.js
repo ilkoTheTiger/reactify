@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { authServiceFactory } from '../services/authService';
@@ -59,7 +59,7 @@ export const AuthProvider = ({
 
     return (
         <>
-            <AuthContext.Provider>
+            <AuthContext.Provider value={context}>
                 {children}
             </AuthContext.Provider>
         </>
