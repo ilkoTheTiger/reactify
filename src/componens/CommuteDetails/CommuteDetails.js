@@ -8,14 +8,15 @@ import { commentServiceFactory } from '../../services/commentService';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 import styles from './CommuteDetails.module.css';
-import {AddComment} from './AddComment/AddComment';
+import { AddComment } from './AddComment/AddComment';
+import { commuteReducer } from '../../reducers/commuteReducer';
 
 export const CommuteDetails = ({
     setDeletedCommute,
 }) => {
     const { commuteId } = useParams();
     const { userId, isAuthenticated, userEmail } = useAuthContext();
-    const [commute, setCommute] = useState({});
+    const [commute, dispatch] = useReducer(commuteReducer, {});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
     const navigate = useNavigate();
@@ -25,28 +26,23 @@ export const CommuteDetails = ({
             commuteService.getOne(commuteId),
             commentService.getAll(commuteId),
         ]).then(([commuteData, comments]) => {
-                setCommute({
-                    ...commuteData,
-                    comments,
-                });
-            });
+
+            const commuteData = {
+                ...commuteData,
+                comments,
+            }
+            dispatch({type: 'COMMUTE_FETCH', commute: commuteData})
+        });
     }, [commuteId]);
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(commuteId, values.comment);
 
-        setCommute(state => ({
-            ...state,
-            comments: [
-                ...state.comments, 
-                {
-                    ...response,
-                    author: {
-                        email: userEmail,
-                    }
-                }
-            ]
-        }));
+        dispatch({
+            type: 'COMMENT_ADD',
+            payload: response,
+            userEmail
+        });
     };
 
     const isOwner = commute._ownerId === userId;
