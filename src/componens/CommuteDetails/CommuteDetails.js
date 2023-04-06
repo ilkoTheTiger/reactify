@@ -30,7 +30,7 @@ export const CommuteDetails = ({
                 ...commuteData,
                 comments,
             }
-            dispatch({type: 'COMMUTE_FETCH', commute: commuteState})
+            dispatch({type: 'COMMUTE_FETCH', payload: commuteState})
         });
     }, [commuteId, commentService, commuteService]);
 
