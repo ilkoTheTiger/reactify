@@ -1,50 +1,44 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+
 import { useService } from '../../hooks/useService';
-
 import { formatDate } from '../../utils/dateUtils';
-
-import styles from './CommuteDetails.module.css';
 import { commuteServiceFactory } from '../../services/commuteService';
 import { commentServiceFactory } from '../../services/commentService';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
+
+import styles from './CommuteDetails.module.css';
+import {AddComment} from './AddComment/AddComment';
 
 export const CommuteDetails = ({
     setDeletedCommute,
 }) => {
-    const { userId } = useContext(AuthContext);
-    const [username, setUsername] = useState('');
-    const [comment, setComment] = useState('');
-    const [comments, setCommnets] = useState([]);
     const { commuteId } = useParams();
+    const { userId, isAuthenticated } = useAuthContext();
     const [commute, setCommute] = useState({});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
     const navigate = useNavigate();
 
     useEffect(() => {
-        commuteService.getOne(commuteId)
-            .then(result => {
-                setCommute(result);
-                // return commentSevice.getAll(commuteId);
-            })
-        // .then(result => {
-        //     setCommnets(result);
-        // });
+        Promise.all([
+            commuteService.getOne(commuteId),
+            commentService.getAll(commuteId),
+        ]).then(([commuteData, comments]) => {
+                setGame({
+                    ...commuteData,
+                    comments,
+                });
+            });
     }, [commuteId]);
 
-    const onCommentSubmit = async (e) => {
-        e.preventDefault();
+    const onCommentSubmit = async (values) => {
+        const response = await commentService.create(commuteId, values.comment);
 
-        const result = await commentService.create(commuteId, {
-            username,
-            comment
-        });
-
-        setCommute(state => ({ ...state, comments: { ...state.comments, [result._id]: result } }));
-
-        setUsername('');
-        setComment('');
+        setGame(state => ({
+            ...state,
+            comments: [...state.comments, response]
+        }));
     };
 
     const isOwner = commute._ownerId === userId;
@@ -62,7 +56,7 @@ export const CommuteDetails = ({
             <h2>Commute Details</h2>
             <div className="info-section">
 
-            <div className="commute-header">
+                <div className="commute-header">
                     <h3>{commute.from}-{commute.to}</h3>
                     <span className="seats">Seats: {commute.seats}</span>
                     <p className="phone">Phone: {commute.phone}</p>
@@ -94,17 +88,7 @@ export const CommuteDetails = ({
                 )}
             </div>
 
-            {/* <!-- Bonus --> */}
-            {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current commute ) --> */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form" onSubmit={onCommentSubmit}>
-                    <input type='text' name='username' placeholder='Username..' value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <textarea name="comment" placeholder="Comment......" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
-                    <input className="btn submit" type="submit" value="Add Comment" />
-                </form>
-            </article>
-
+            {isAuthenticated && <AddComment onCommentSubmit={onCommentSubmit} />}
         </section>
     );
 };
