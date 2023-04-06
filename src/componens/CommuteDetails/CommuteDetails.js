@@ -25,7 +25,7 @@ export const CommuteDetails = ({
             commuteService.getOne(commuteId),
             commentService.getAll(commuteId),
         ]).then(([commuteData, comments]) => {
-                setGame({
+                setCommute({
                     ...commuteData,
                     comments,
                 });
@@ -35,7 +35,7 @@ export const CommuteDetails = ({
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(commuteId, values.comment);
 
-        setGame(state => ({
+        setCommute(state => ({
             ...state,
             comments: [...state.comments, response]
         }));
