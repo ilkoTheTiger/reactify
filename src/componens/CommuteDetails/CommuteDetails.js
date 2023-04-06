@@ -83,9 +83,9 @@ export const CommuteDetails = ({
                             </li>
                         ))}
                     </ul>
-                    {/* {!Object.values(commute.comments).length && (
+                    {!commute.comments?.length && (
                         <p className="no-comment">No comments.</p>
-                    )} */}
+                    )}
                 </div>
 
                 {isOwner && (
