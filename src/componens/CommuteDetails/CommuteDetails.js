@@ -71,7 +71,7 @@ export const CommuteDetails = ({
                     <ul>
                         {commute.comments && Object.values(commute.comments).map(comment => (
                             <li key={comment._id} className="comment">
-                                <p>{comment.username}: {comment.comment}</p>
+                                <p>{comment.author.email}: {comment.comment}</p>
                             </li>
                         ))}
                     </ul>

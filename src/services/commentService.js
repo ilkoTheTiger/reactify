@@ -6,9 +6,10 @@ const request = requestFactory(); //potential cause of bug
 export const commentServiceFactory = (token) => {
 
     const getAll = async (commuteId) => {
-        const query = encodeURIComponent(`commuteId="${commuteId}"`);
+        const searchQuery = encodeURIComponent(`commuteId="${commuteId}"`);
+        const relationQuery = encodeURIComponent(`author=_ownerId:users`)
 
-        const result = await request.get(`${baseUrl}?where=${query}`);
+        const result = await request.get(`${baseUrl}?where=${searchQuery}&load=${relationQuery}`);
         const comments = Object.values(result);
 
         return comments;
