@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useReducer } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { useService } from '../../hooks/useService';
@@ -26,14 +26,13 @@ export const CommuteDetails = ({
             commuteService.getOne(commuteId),
             commentService.getAll(commuteId),
         ]).then(([commuteData, comments]) => {
-
-            const commuteData = {
+            const commuteState = {
                 ...commuteData,
                 comments,
             }
-            dispatch({type: 'COMMUTE_FETCH', commute: commuteData})
+            dispatch({type: 'COMMUTE_FETCH', commute: commuteState})
         });
-    }, [commuteId]);
+    }, [commuteId, commentService, commuteService]);
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(commuteId, values.comment);
