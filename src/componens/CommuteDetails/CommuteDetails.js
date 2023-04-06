@@ -14,7 +14,7 @@ export const CommuteDetails = ({
     setDeletedCommute,
 }) => {
     const { commuteId } = useParams();
-    const { userId, isAuthenticated } = useAuthContext();
+    const { userId, isAuthenticated, userEmail } = useAuthContext();
     const [commute, setCommute] = useState({});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
@@ -37,7 +37,15 @@ export const CommuteDetails = ({
 
         setCommute(state => ({
             ...state,
-            comments: [...state.comments, response]
+            comments: [
+                ...state.comments, 
+                {
+                    ...response,
+                    author: {
+                        email: userEmail,
+                    }
+                }
+            ]
         }));
     };
 
