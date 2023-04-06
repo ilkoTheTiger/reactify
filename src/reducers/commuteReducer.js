@@ -1,7 +1,7 @@
 export const commuteReducer = (state, action) => {
     switch (action.type) {
         case 'COMMUTE_FETCH':
-            return action.commute;
+            return Object.assign({}, action.payload);
         case 'COMMENT_ADD':
             return {
                 ...state,
