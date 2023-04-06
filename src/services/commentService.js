@@ -1,9 +1,9 @@
 import { requestFactory } from './requester';
 
 const baseUrl = 'http://localhost:3030/data/comments'
+const request = requestFactory(); //potential cause of bug
 
 export const commentServiceFactory = (token) => {
-    const request = requestFactory(token);
 
     const getAll = async (commuteId) => {
         const query = encodeURIComponent(`commuteId="${commuteId}"`);
@@ -14,11 +14,12 @@ export const commentServiceFactory = (token) => {
         return comments;
     };
 
-    const create = async (data) => {
-        const result = await request.post(baseUrl, data);
+    const create = async (commuteId, comment) => {
+        const result = await request.post(baseUrl, { commuteId, comment });
 
         return result;
     };
+
 
     return {
         getAll,
