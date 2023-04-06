@@ -2,7 +2,7 @@ import { requestFactory } from "./requester"
 
 const baseUrl = 'http://localhost:3030/data/commutes'
 
-export const    commuteServiceFactory = (token) => {
+export const commuteServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async () => {
