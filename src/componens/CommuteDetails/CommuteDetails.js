@@ -128,21 +128,23 @@ export const CommuteDetails = () => {
 
                     {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
                         <div className={styles.reservationActions}>
-                            <input type='submit' className={styles.inputSubmit} onClick={onReserveClick} value={'Reserve a Seat'}/>
+                            <input type='submit' className={styles.inputButton} onClick={onReserveClick} value={'Reserve a Seat'}/>
                         </div>
                     )}
 
                     {!isOwner && reservation && isAuthenticated && (
                         <div className={styles.reservationActions}>
-                            <input type='submit' className={styles.inputSubmit} onClick={onLeaveClick} value={'Leave the Commute'}/>
+                            <input type='submit' className={styles.inputButton} onClick={onLeaveClick} value={'Leave the Commute'}/>
                         </div>
                     )}
 
                     {isOwner && (
                         <>
-                            <div className="buttons">
-                                <Link to={`/commutes/${commute._id}/edit`} className="button">Edit</Link>
-                                <button className="button" onClick={onDeleteClick}>Delete</button>
+                            <div className={styles.buttonContainer}>
+                                <Link to={`/commutes/${commute._id}/edit`} className="button">
+                                    <input type='submit' className={styles.inputButton} value="Edit" />
+                                </Link>
+                                <input type="submit" value="Delete" className={styles.inputButton} onClick={onDeleteClick} />
                             </div>
                         </>
                     )}
