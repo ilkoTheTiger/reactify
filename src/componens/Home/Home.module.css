@@ -1,16 +1,18 @@
-.notFounContainer {
+.homeSection {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
-.notFoundMessage {
+.homeMessage {
   text-align: center;
   color: var(--clr-primary);
 }
 
 .backgroundImage {
-  width: 100vw;
+  position: absolute;
+  z-index: -1;
 }
 
 .homeContainer {
@@ -18,6 +20,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 70vh;
 }
 
 article.cardsContainer {
