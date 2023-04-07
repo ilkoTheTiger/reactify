@@ -57,18 +57,18 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/commutes' element={<Catalog commutes={commutes} />} />
                         <Route path='/commutes/:commuteId' element={<CommuteDetails setDeletedCommute={setDeletedCommute} />}></Route>
-                        
+
                         <Route element={<RouteGuard />} >
                             <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
                             <Route path='/commutes/:commuteId/edit' element={<Edit onEditCommuteSubmit={onEditCommuteSubmit} />} />
+                            <Route path='/logout' element={<Logout />} />
                         </Route>
 
                         <Route element={<SessionGuard />} >
                             <Route path='/login' element={<Login />} />
                             <Route path='/register' element={<Register />} />
                         </Route>
-                        
-                        <Route path='/logout' element={<Logout />} />
+
                         <Route path='/*' element={<h1>404 Page</h1>} />
                     </Routes>
                 </main>
