@@ -10,12 +10,22 @@ export const CommuteProvider = ({
 }) => {
     const navigate = useNavigate();
     const [commutes, setCommutes] = useState([]);
+    const [latest, setLatest] = useState([]);
     const commuteService = commuteServiceFactory();
 
     useEffect(() => {
         commuteService.getAll()
             .then(result => {
                 setCommutes(result);
+            });
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        commuteService.getLatest()
+            .then(result => {
+                console.log(result)
+                setLatest(result);
             });
         // eslint-disable-next-line
     }, []);
@@ -45,6 +55,7 @@ export const CommuteProvider = ({
 
     const contextValues = {
         commutes,
+        latest,
         onHostCommuteSubmit,
         onEditCommuteSubmit,
         deleteCommute,

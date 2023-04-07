@@ -1,0 +1,36 @@
+.homeSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.homeMessage {
+  text-align: center;
+  color: var(--clr-primary);
+}
+
+.backgroundImage {
+  position: absolute;
+  z-index: -1;
+}
+
+.homeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 70vh;
+}
+
+article.cardsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+}
+/* 
+.commuteCard {
+  display: inline-block;
+} */

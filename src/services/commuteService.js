@@ -7,16 +7,16 @@ export const commuteServiceFactory = (token) => {
 
     const getAll = async () => {
         const result = await request.get(`${baseUrl}`);
-        const commutes = Object.values(result);
+        // const commutes = Object.values(result);
     
-        return commutes;
+        return result;
     };
 
     const getLatest = async () => {
         const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
-        // const Latest = Object.values(result);
+        // const latest = Object.values(result);
 
-        return Latest;
+        return result;
     }
 
     async function getPassengers(commuteId) {
