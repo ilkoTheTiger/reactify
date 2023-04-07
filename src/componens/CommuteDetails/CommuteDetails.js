@@ -39,6 +39,7 @@ export const CommuteDetails = ({
 
         dispatch({
             type: 'COMMENT_ADD',
+            // payload: {...response, email: userEmail}, // Possible substitute fir next 2 lines
             payload: response,
             userEmail
         });
