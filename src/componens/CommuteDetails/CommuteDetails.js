@@ -125,13 +125,13 @@ export const CommuteDetails = () => {
                     </p>
 
                     {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
-                        <div className="buttons">
+                        <div className={styles.reservationActions}>
                             <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
                         </div>
                     )}
 
                     {!isOwner && reservation && isAuthenticated && (
-                        <div className="buttons">
+                        <div className={styles.reservationActions}>
                             <button className="button" onClick={onLeaveClick}>Leave the Commute</button>
                         </div>
                     )}

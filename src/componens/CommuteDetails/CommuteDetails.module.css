@@ -10,3 +10,9 @@ section#commuteDetails {
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.reservationActions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
