@@ -40,6 +40,8 @@ export const CommuteDetails = () => {
                 reservations,
             }
             dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
+        }).catch(error => {
+            navigate('/commutes');
         });
         // eslint-disable-next-line
     }, [commuteId]);
