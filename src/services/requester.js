@@ -26,6 +26,11 @@ const requester = async (method, token, url, data) => {
         return {};
     }
 
+    if (response.status === 403) {
+        localStorage.clear();
+        return {};
+    }
+
     const result = await response.json();
 
     if (!response.ok) {
