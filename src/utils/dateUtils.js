@@ -23,5 +23,5 @@ export const maxDate = () => {
 export const formatDate = (input) => {
     const date = new Date(input);
 
-    return date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' });
+    return date.toLocaleString('en-GB', { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 }
