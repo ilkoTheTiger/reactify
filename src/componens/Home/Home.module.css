@@ -12,3 +12,11 @@
 .backgroundImage {
   width: 100vw;
 }
+
+.homeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20vw;
+}

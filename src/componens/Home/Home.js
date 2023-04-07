@@ -5,8 +5,8 @@ export const Home = () => {
         <section className={styles.notFoundContainer}>
             <h3 className={styles.notFoundMessage}>Home</h3>
             <img className={styles.backgroundImage} src="https://drive.google.com/uc?id=1JonN6UroNZidwcARZb2b39WB6agyZMZ0" alt="MetniMe 404 Not Found" />
-            <div id="home-page">
-                <h1>Latest Games</h1>
+            <div className={styles.homeContainer}>
+                <h1>Latest Commutes</h1>
 
                 {/* <!-- Display div: with information about every game (if any) --> */}
                 <div className="game">
