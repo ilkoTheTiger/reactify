@@ -1,9 +1,11 @@
+import { useCommuteContext } from '../../contexts/CommuteContext';
+
 import styles from './Catalog.module.css';
 import { CatalogItem } from './CatalogItem/CatalogItem';
 
-export const Catalog = ({
-    commutes
-}) => {
+export const Catalog = () => {
+    const {commutes} = useCommuteContext();
+
     return (
         <section className={styles.catalogContainer}>
             <h2>Find a Commute</h2>

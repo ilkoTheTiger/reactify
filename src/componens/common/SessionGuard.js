@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 import { useAuthContext } from "../../contexts/AuthContext";
 
-export const RouteGuard = ({
+export const SessionGuard = ({
     children,
 }) => {
     const { isAuthenticated } = useAuthContext();

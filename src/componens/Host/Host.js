@@ -1,12 +1,14 @@
 import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
-import styles from './Host.module.css';
+
+import { useCommuteContext } from '../../contexts/CommuteContext';
 import { currentDateTime, maxDate } from '../../utils/dateUtils';
 import { checkForErrors, hasEmptyProperty } from '../../utils/validators';
 
-export const Host = ({
-    onHostCommuteSubmit,
-}) => {
+import styles from './Host.module.css';
+
+export const Host = () => {
+    const {onHostCommuteSubmit} = useCommuteContext();
     const now = currentDateTime();
     const max = maxDate();
     const {values, changeHandler, onSubmit} = useForm({

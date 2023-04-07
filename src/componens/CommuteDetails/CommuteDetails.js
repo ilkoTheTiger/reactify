@@ -6,16 +6,16 @@ import { formatDate } from '../../utils/dateUtils';
 import { commuteServiceFactory } from '../../services/commuteService';
 import { commentServiceFactory } from '../../services/commentService';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { useCommuteContext } from '../../contexts/CommuteContext';
+import { commuteReducer } from '../../reducers/commuteReducer';
 
 import styles from './CommuteDetails.module.css';
 import { AddComment } from './AddComment/AddComment';
-import { commuteReducer } from '../../reducers/commuteReducer';
 
-export const CommuteDetails = ({
-    setDeletedCommute,
-}) => {
+export const CommuteDetails = () => {
     const { commuteId } = useParams();
     const { userId, isAuthenticated, userEmail } = useAuthContext();
+    const {setDeletedCommute} = useCommuteContext();
     const [commute, dispatch] = useReducer(commuteReducer, {});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);

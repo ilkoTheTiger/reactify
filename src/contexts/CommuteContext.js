@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { commuteServiceFactory } from '../services/commuteService';
 
-export const GameContext = createContext();
+export const CommuteContext = createContext();
 
-export const GameProvider = ({
+export const CommuteProvider = ({
     children,
 }) => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ export const GameProvider = ({
             .then(result => {
                 setCommutes(result);
             });
-    }, [deletedCommute]);
+    }, [deletedCommute, setDeletedCommute, commuteService]);
 
     const onHostCommuteSubmit = async (data) => {
         const createdCommute = await commuteService.create(data);

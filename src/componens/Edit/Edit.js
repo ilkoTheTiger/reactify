@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 import { useService } from "../../hooks/useService";
-import { commuteServiceFactory } from "../../services/commuteService";
-
 import { useForm } from '../../hooks/useForm';
-import styles from './Edit.module.css';
+import { commuteServiceFactory } from "../../services/commuteService";
+import { useCommuteContext } from '../../contexts/CommuteContext';
 import { currentDateTime, maxDate } from '../../utils/dateUtils';
 import { checkForErrors, hasEmptyProperty } from '../../utils/validators';
 
+import styles from './Edit.module.css';
 
-export const Edit = ({
-    onEditCommuteSubmit,
-}) => {
+
+export const Edit = () => {
+    const {onEditCommuteSubmit} = useCommuteContext();
     const { commuteId } = useParams();
     const commuteService = useService(commuteServiceFactory);
     const now = currentDateTime();
@@ -40,6 +40,7 @@ export const Edit = ({
             .then(result => {
                 changeValues(result);
             });
+            // eslint-disable-next-line
     }, [commuteId]);
 
     const formValidate = (e) => {
