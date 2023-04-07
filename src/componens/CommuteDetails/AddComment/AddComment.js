@@ -11,18 +11,23 @@ export const AddComment = ({
 
     return (
         <article className={styles.createComment}>
-            <label htmlFor="comment">Add new comment:</label>
+
+            <h3 htmlFor="comment">Add new comment:</h3>
             <form className={styles.commentForm} onSubmit={onSubmit}>
-                <textarea
-                name="comment"
-                className={styles.commentField}
-                placeholder="Type comment here.."
-                value={values.comment}
-                onChange={changeHandler}
-                ></textarea>
-                
-                <input className="btn submit" type="submit" value="Add Comment" />
+                <div className={styles.formRow}>
+                    <div className={styles.formInput}>
+                        <textarea
+                            name="comment"
+                            className={styles.commentField}
+                            placeholder="Type comment here.."
+                            value={values.comment}
+                            onChange={changeHandler}
+                        ></textarea>
+                    </div>
+
+                </div>
+                <input className={styles.inputButton} type="submit" value="Add Comment" />
             </form>
-        </article>
+        </article >
     )
 };
