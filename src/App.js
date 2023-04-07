@@ -5,6 +5,7 @@ import { CommuteProvider } from './contexts/CommuteContext';
 
 import { RouteGuard } from './componens/common/RouteGuard';
 import { SessionGuard } from './componens/common/SessionGuard';
+import { CommuteOwner } from './componens/common/CommuteOwner';
 
 import './App.css';
 import { Home } from './componens/Home/Home'
@@ -36,7 +37,11 @@ function App() {
 
                             <Route element={<RouteGuard />} >
                                 <Route path='/host' element={<Host />} />
-                                <Route path='/commutes/:commuteId/edit' element={<Edit />} />
+                                <Route path='/commutes/:commuteId/edit' element={
+                                    <CommuteOwner>
+                                        <Edit />
+                                    </CommuteOwner>
+                                } />
                                 <Route path='/logout' element={<Logout />} />
                             </Route>
 

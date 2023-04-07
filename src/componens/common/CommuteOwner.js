@@ -3,7 +3,7 @@ import { Navigate, Outlet, useParams } from "react-router-dom";
 import { useCommuteContext } from "../../contexts/CommuteContext";
 import { useAuthContext } from "../../contexts/AuthContext";
 
-export const Commute = ({
+export const CommuteOwner = ({
     children,
 }) => {
     const { commuteId } = useParams();
