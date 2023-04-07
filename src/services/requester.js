@@ -13,11 +13,16 @@ const requester = async (method, token, url, data) => {
         };
     };
     
-    if (token) {
-        options.headers = {
-            ...options.headers,
-            'X-Authorization': token,
-        };
+    const serializedAuth = localStorage.getItem('auth');
+    if (serializedAuth) {
+        const auth = JSON.parse(serializedAuth);
+
+        if (auth.accessToken) {
+            options.headers = {
+                ...options.headers,
+                'X-Authorization': auth.accessToken,
+            };
+        }
     };
      
     const response = await fetch(url, options);
@@ -42,16 +47,6 @@ const requester = async (method, token, url, data) => {
 };
 
 export const requestFactory = (token) => {
-    // Bug introduced, when changing user
-    if (!token) {
-        const serializedAuth = localStorage.getItem('auth');
-
-        if (serializedAuth) {
-            const auth = JSON.parse(serializedAuth);
-            token = auth.accessToken;
-        };
-    };
-
     return {
         get: requester.bind(null, 'GET', token),
         post: requester.bind(null, 'POST', token),
