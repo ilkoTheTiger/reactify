@@ -1,4 +1,4 @@
-const requester = async (method, token, url, data) => {
+const requester = async (method, url, data) => {
     const options = {};
 
     
@@ -46,12 +46,12 @@ const requester = async (method, token, url, data) => {
 
 };
 
-export const requestFactory = (token) => {
+export const requestFactory = () => {
     return {
-        get: requester.bind(null, 'GET', token),
-        post: requester.bind(null, 'POST', token),
-        put: requester.bind(null, 'PUT', token),
-        patch: requester.bind(null, 'PATCH', token),
-        delete: requester.bind(null, 'DELETE', token),
+        get: requester.bind(null, 'GET'),
+        post: requester.bind(null, 'POST'),
+        put: requester.bind(null, 'PUT'),
+        patch: requester.bind(null, 'PATCH'),
+        delete: requester.bind(null, 'DELETE'),
     }
 };

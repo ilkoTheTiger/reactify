@@ -3,7 +3,7 @@ import { requestFactory } from "./requester"
 const baseUrl = 'http://localhost:3030/data/commutes'
 
 export const commuteServiceFactory = (token) => {
-    const request = requestFactory(token);
+    const request = requestFactory();
 
     const getAll = async () => {
         const result = await request.get(`${baseUrl}`);

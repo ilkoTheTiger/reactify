@@ -65,7 +65,7 @@ export const CommuteDetails = () => {
 
     const onReserveClick = async () => {
         const response = await passengerService.reserveSeat(commute._id);
-
+        
         setReservation(response._id);
 
         dispatch({
