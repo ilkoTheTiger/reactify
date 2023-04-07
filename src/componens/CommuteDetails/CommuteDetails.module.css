@@ -101,10 +101,10 @@ section#commuteDetails {
     color: var(--clr-primary);
     border-color: var(--clr-primary);;
     background-color: var(--clr-fill-light);
-    min-height: 2rem;
+    min-height: 1.5rem;
     border-radius: 0.25rem;
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    margin: 1rem 0;
   }
   
   div .inputSubmit:hover {
