@@ -11,7 +11,7 @@ export const Home = () => {
                 <img className={styles.backgroundImage} src="https://drive.google.com/uc?id=1JonN6UroNZidwcARZb2b39WB6agyZMZ0" alt="MetniMe 404 Not Found" />
                 <h3 className={styles.homeMessage}>Welcome to MetniMe!</h3>
                 <div className={styles.homeContainer}>
-                    <h2>Latest Commutes</h2>
+                    <h2 className={styles.latestCommutes}>Latest Commutes</h2>
                     <article className={styles.cardsContainer}>
                         <div className={styles.commutesContainer}>
                             {latest.map(commute => <LatestCommute key={commute._id} {...commute} />)}

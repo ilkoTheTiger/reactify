@@ -31,11 +31,15 @@
   margin-bottom: 70vh;
 }
 
-
 article.cardsContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   gap: 2rem;
+}
+
+.latestCommutes {
+  color: var(--clr-primary);
+  margin-bottom: 1rem;
 }
