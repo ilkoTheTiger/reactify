@@ -13,7 +13,7 @@ export const commuteServiceFactory = (token) => {
     };
 
     const getLatest = async () => {
-        const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
+        const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc&pageSize=3`);
         // const latest = Object.values(result);
 
         return result;

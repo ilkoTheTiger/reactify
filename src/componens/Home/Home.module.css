@@ -15,13 +15,22 @@
   z-index: -1;
 }
 
+.homeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .commutesContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  gap: 2rem;
   margin-bottom: 70vh;
 }
+
 
 article.cardsContainer {
   display: flex;
