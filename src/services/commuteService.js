@@ -12,6 +12,12 @@ export const commuteServiceFactory = (token) => {
         return commutes;
     };
 
+    async function getPassengers(commuteId) {
+        const result = request.get(`http://localhost:3030/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`);
+    
+        return result;
+    };
+
     const getOne = async (commuteId) => {
         const result = await request.get(`${baseUrl}/${commuteId}`);
 
@@ -30,6 +36,7 @@ export const commuteServiceFactory = (token) => {
 
     return {
         getAll,
+        getPassengers,
         getOne,
         create,
         edit,
