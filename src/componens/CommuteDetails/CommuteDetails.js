@@ -117,7 +117,9 @@ export const CommuteDetails = () => {
                     <div className="commute-header">
                         <h3>{commute.from}-{commute.to}</h3>
                         <span className="seats">Seats Left: {(commute.seats - commute.reservations > 0) ? (commute.seats - commute.reservations) : 'Commute is Full!'}</span>
-                        <p className="phone">Phone: {commute.phone}</p>
+                        {reservation && (
+                            <p className="phone">Phone: {commute.phone}</p>
+                        )}
                     </div>
 
                     <p className="time">
