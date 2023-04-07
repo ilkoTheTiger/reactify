@@ -6,7 +6,7 @@ export const commuteReducer = (state, action) => {
             return {
                 ...state,
                 comments: [
-                    ...state.comments, 
+                    ...state.comments,
                     {
                         ...action.payload,
                         author: {
@@ -20,9 +20,17 @@ export const commuteReducer = (state, action) => {
             return {
                 ...state,
                 comments: [
-                    ...state.comments, 
+                    ...state.comments,
                 ],
-                reservations: state.reservations
+                reservations: state.reservations + 1
+            }
+        case 'RESERVATION_REMOVE':
+            return {
+                ...state,
+                comments: [
+                    ...state.comments,
+                ],
+                reservations: state.reservations - 1
             }
         default:
             return state;

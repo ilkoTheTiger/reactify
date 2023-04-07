@@ -42,6 +42,14 @@ export const CommuteDetails = () => {
         // eslint-disable-next-line
     }, [commuteId]);
 
+    useEffect(() => {
+        Promise.all([
+
+        ]).then(([]) => {
+
+        });
+    })
+
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(commuteId, values.comment);
 
@@ -58,6 +66,16 @@ export const CommuteDetails = () => {
 
         dispatch({
             type: 'RESERVATION_ADD',
+            payload: response,
+            userEmail
+        });
+    };
+
+    const onLeaveClick = async () => {
+        const response = await passengerService.unreserveSeat(commute._id);
+
+        dispatch({
+            type: 'RESERVATION_DELETE',
             payload: response,
             userEmail
         });
@@ -112,9 +130,17 @@ export const CommuteDetails = () => {
                     </div>
                 )}
 
+
+                <p>{commute.reservations}/{commute.seats}</p>
                 {!isOwner && isAuthenticated && (
                     <div className="buttons">
                         <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
+                    </div>
+                )}
+
+                {!isOwner && isAuthenticated && (
+                    <div className="buttons">
+                        <button className="button" onClick={onLeaveClick}>Leave the Commute</button>
                     </div>
                 )}
             </div>
