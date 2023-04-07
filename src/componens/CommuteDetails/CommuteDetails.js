@@ -52,9 +52,9 @@ export const CommuteDetails = () => {
             setReservation(userLiked[0]?._id);
             if (reservations > commute.seats) {
                 onLeaveClick();
-                
+
                 alert('Sorry, someone took the last seat!')
-                
+
                 navigate(`/commutes`)
             };
         });
@@ -111,30 +111,42 @@ export const CommuteDetails = () => {
     return (
         <section id={styles.commuteDetails}>
             <h2>Commute Details</h2>
-            <div className="info-section">
+            <div className={styles.detailsContainer}>
+                <div className="info-section">
 
-                <div className="commute-header">
-                    <h3>{commute.from}-{commute.to}</h3>
-                    <span className="seats">Seats Left: {(commute.seats - commute.reservations > 0) ? (commute.seats - commute.reservations) : 'Commute is Full!'}</span>
-                    <p className="phone">Phone: {commute.phone}</p>
+                    <div className="commute-header">
+                        <h3>{commute.from}-{commute.to}</h3>
+                        <span className="seats">Seats Left: {(commute.seats - commute.reservations > 0) ? (commute.seats - commute.reservations) : 'Commute is Full!'}</span>
+                        <p className="phone">Phone: {commute.phone}</p>
+                    </div>
+
+                    <p className="time">
+                        {formatDate(commute.time)}
+                    </p>
+
+                    {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
+                        <div className="buttons">
+                            <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
+                        </div>
+                    )}
+
+                    {!isOwner && reservation && isAuthenticated && (
+                        <div className="buttons">
+                            <button className="button" onClick={onLeaveClick}>Leave the Commute</button>
+                        </div>
+                    )}
+
+                    {isOwner && (
+                        <>
+                            <div className="buttons">
+                                <Link to={`/commutes/${commute._id}/edit`} className="button">Edit</Link>
+                                <button className="button" onClick={onDeleteClick}>Delete</button>
+                            </div>
+                        </>
+                    )}
+
+                    {isAuthenticated && <AddComment onCommentSubmit={onCommentSubmit} />}
                 </div>
-
-                <p className="time">
-                    {formatDate(commute.time)}
-                </p>
-
-                {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
-                    <div className="buttons">
-                        <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
-                    </div>
-                )}
-
-                {!isOwner && reservation && isAuthenticated && (
-                    <div className="buttons">
-                        <button className="button" onClick={onLeaveClick}>Leave the Commute</button>
-                    </div>
-                )}
-
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
@@ -148,23 +160,8 @@ export const CommuteDetails = () => {
                         <p className="no-comment">No comments.</p>
                     )}
                 </div>
-
-                {isOwner && (
-                    <>
-                        <div className="buttons">
-                            <Link to={`/commutes/${commute._id}/edit`} className="button">Edit</Link>
-                            <button className="button" onClick={onDeleteClick}>Delete</button>
-                        </div>
-
-                        <div className="details-passengers">
-                            <h2>Passengers:</h2>
-
-                        </div>
-                    </>
-                )}
             </div>
 
-            {isAuthenticated && <AddComment onCommentSubmit={onCommentSubmit} />}
         </section>
     );
 };
