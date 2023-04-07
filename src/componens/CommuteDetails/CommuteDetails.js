@@ -48,6 +48,7 @@ export const CommuteDetails = () => {
     const isOwner = commute._ownerId === userId;
 
     const onDeleteClick = async () => {
+        // eslint-disable-next-line
         const confirmation = confirm(`Commute ${commute.from}-${commute.to} is about to be deleted!`)
 
         if (confirmation) {

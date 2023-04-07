@@ -35,7 +35,7 @@ export const CommuteProvider = ({
     };
 
     const deleteCommute = (commuteId) => {
-        setGames(state => state.filter(commute => commute._id !== commuteId));
+        setCommutes(state => state.filter(commute => commute._id !== commuteId));
     };
 
     const contextValues = {
