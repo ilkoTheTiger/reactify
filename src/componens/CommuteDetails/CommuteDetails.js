@@ -18,19 +18,24 @@ export const CommuteDetails = () => {
     const { userId, isAuthenticated, userEmail } = useAuthContext();
     const { deleteCommute } = useCommuteContext();
     const [commute, dispatch] = useReducer(commuteReducer, {});
+    const isOwner = commute._ownerId === userId;
+
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
     const passengerService = useService(passengerServiceFactory);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         Promise.all([
             commuteService.getOne(commuteId),
             commentService.getAll(commuteId),
-        ]).then(([commuteData, comments]) => {
+            passengerService.getAllPassengers(commuteId),
+        ]).then(([commuteData, comments, reservations]) => {
             const commuteState = {
                 ...commuteData,
                 comments,
+                reservations,
             }
             dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
         });
@@ -48,7 +53,15 @@ export const CommuteDetails = () => {
         });
     };
 
-    const isOwner = commute._ownerId === userId;
+    const onReserveClick = async () => {
+        const response = await passengerService.reserveSeat(commute._id);
+
+        dispatch({
+            type: 'RESERVATION_ADD',
+            payload: response,
+            userEmail
+        });
+    };
 
     const onDeleteClick = async () => {
         // eslint-disable-next-line
@@ -61,15 +74,6 @@ export const CommuteDetails = () => {
 
             navigate('/commutes');
         }
-    };
-
-    const onReserveClick = async () => {
-        await passengerService.reserve(commute._id);
-
-        deleteCommute(commute._id);
-
-        navigate('/commutes');
-
     };
 
     return (

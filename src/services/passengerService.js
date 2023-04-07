@@ -3,12 +3,10 @@ import { requestFactory } from './requester';
 const baseUrl = 'http://localhost:3030/data/passengers'
 
 const endpoints = {
-    'passengersByCommuteId': (commuteId) => `/data/passengers?where=${encodeURIComponent(`commuteId=${commuteId}`)}&count`,
-    'passengerByUserId': (commuteId, userId) => `/data/passengers?where=${encodeURIComponent(`_ownerId=${userId} AND commuteId=${commuteId}`)}&count`,
-    'reserve': '/data/passengers',
-    'leave': '/data/passengers/',
-    'getPassengers': (commuteId) => `/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`,
-    'getUserReservation': (commuteId, userId) => `/data/passengers?where=commuteId%3D%22${commuteId}%22%20and%20_ownerId%3D%22${userId}%22`,
+    'passengersByCommuteId': (commuteId) => `?where=${encodeURIComponent(`commuteId=${commuteId}`)}&count`,
+    'passengerByUserId': (commuteId, userId) => `?where=${encodeURIComponent(`_ownerId=${userId} AND commuteId=${commuteId}`)}&count`,
+    'getPassengers': (commuteId) => `?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`,
+    'getUserReservation': (commuteId, userId) => `?where=commuteId%3D%22${commuteId}%22%20and%20_ownerId%3D%22${userId}%22`,
 }
 
 export const passengerServiceFactory = (token) => {
@@ -44,13 +42,13 @@ export const passengerServiceFactory = (token) => {
     };
 
     const reserveSeat = async (commuteId) => {
-        const result = await request.post(baseUrl + endpoints.reserve, { commuteId });
+        const result = await request.post(baseUrl, { commuteId });
 
         return result;
     };
 
     const unreserveSeat = async (commuteId) => {
-        const result = await request.delete(baseUrl + endpoints.leave + commuteId);
+        const result = await request.delete(baseUrl + commuteId);
 
         return result;
     };

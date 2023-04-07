@@ -13,7 +13,16 @@ export const commuteReducer = (state, action) => {
                             email: action.userEmail,
                         }
                     }
-                ]
+                ],
+                reservations: state.reservations
+            }
+        case 'RESERVATION_ADD':
+            return {
+                ...state,
+                comments: [
+                    ...state.comments, 
+                ],
+                reservations: state.reservations
             }
         default:
             return state;
