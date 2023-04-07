@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, Navigate } from 'react-router-dom';
 
 import { useService } from '../../hooks/useService';
 import { formatDate } from '../../utils/dateUtils';
@@ -22,7 +22,6 @@ export const CommuteDetails = () => {
     const [reservation, setReservation] = useState({
         reservationId: '',
     });
-    const [passengers, setPassengers] = useState({});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
     const passengerService = useService(passengerServiceFactory);
@@ -53,7 +52,11 @@ export const CommuteDetails = () => {
             setReservation(userLiked[0]?._id);
             if (reservations > commute.seats) {
                 onLeaveClick();
-            }
+                
+                alert('Sorry, someone took the last seat!')
+                
+                navigate(`/commutes`)
+            };
         });
     }, [reservation]);
 
