@@ -39,11 +39,16 @@ export const CommuteProvider = ({
         setCommutes(state => state.filter(commute => commute._id !== commuteId));
     };
 
+    const getCommute = (commuteId) => {
+        return commutes.find(commute => commute._id === commuteId);
+    };
+
     const contextValues = {
         commutes,
         onHostCommuteSubmit,
         onEditCommuteSubmit,
         deleteCommute,
+        getCommute,
     }
 
     return (
