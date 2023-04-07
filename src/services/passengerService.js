@@ -47,8 +47,8 @@ export const passengerServiceFactory = (token) => {
         return result;
     };
 
-    const unreserveSeat = async (commuteId) => {
-        const result = await request.delete(baseUrl + commuteId);
+    const unreserveSeat = async (reservationId) => {
+        const result = await request.delete(`${baseUrl}/${reservationId}`);
 
         return result;
     };

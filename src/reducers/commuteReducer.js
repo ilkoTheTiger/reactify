@@ -24,7 +24,7 @@ export const commuteReducer = (state, action) => {
                 ],
                 reservations: state.reservations + 1
             }
-        case 'RESERVATION_REMOVE':
+        case 'RESERVATION_DELETE':
             return {
                 ...state,
                 comments: [

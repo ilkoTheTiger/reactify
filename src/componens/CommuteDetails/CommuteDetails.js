@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { useService } from '../../hooks/useService';
@@ -19,7 +19,9 @@ export const CommuteDetails = () => {
     const { deleteCommute } = useCommuteContext();
     const [commute, dispatch] = useReducer(commuteReducer, {});
     const isOwner = commute._ownerId === userId;
-
+    const [reservation, setReservation] = useState({
+        reservationId: '',
+    });
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
     const passengerService = useService(passengerServiceFactory);
@@ -44,11 +46,11 @@ export const CommuteDetails = () => {
 
     useEffect(() => {
         Promise.all([
-
-        ]).then(([]) => {
-
+            passengerService.getUserReservation(commuteId, userId)
+        ]).then(([userLiked]) => {
+            setReservation(userLiked[0]?._id);
         });
-    })
+    }, [reservation])
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(commuteId, values.comment);
@@ -64,6 +66,8 @@ export const CommuteDetails = () => {
     const onReserveClick = async () => {
         const response = await passengerService.reserveSeat(commute._id);
 
+        setReservation(response._id);
+
         dispatch({
             type: 'RESERVATION_ADD',
             payload: response,
@@ -72,7 +76,9 @@ export const CommuteDetails = () => {
     };
 
     const onLeaveClick = async () => {
-        const response = await passengerService.unreserveSeat(commute._id);
+        const response = await passengerService.unreserveSeat(reservation);
+
+        setReservation('');
 
         dispatch({
             type: 'RESERVATION_DELETE',
@@ -131,14 +137,16 @@ export const CommuteDetails = () => {
                 )}
 
 
-                <p>{commute.reservations}/{commute.seats}</p>
-                {!isOwner && isAuthenticated && (
+                <p>{commute.reservations}/{commute.seats}
+                </p>
+
+                {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
                     <div className="buttons">
                         <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
                     </div>
                 )}
 
-                {!isOwner && isAuthenticated && (
+                {!isOwner && reservation && isAuthenticated && (
                     <div className="buttons">
                         <button className="button" onClick={onLeaveClick}>Leave the Commute</button>
                     </div>
