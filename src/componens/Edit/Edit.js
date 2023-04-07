@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useService } from "../../hooks/useService";
 import { useForm } from '../../hooks/useForm';
 import { commuteServiceFactory } from "../../services/commuteService";
 import { useCommuteContext } from '../../contexts/CommuteContext';
-import { useAuthContext } from '../../contexts/AuthContext';
 
 import { currentDateTime, maxDate } from '../../utils/dateUtils';
 import { checkForErrors, hasEmptyProperty } from '../../utils/validators';
@@ -15,7 +14,6 @@ import styles from './Edit.module.css';
 
 export const Edit = () => {
     const {onEditCommuteSubmit} = useCommuteContext();
-    const { userId } = useAuthContext();
     const { commuteId } = useParams();
     const commuteService = useService(commuteServiceFactory);
     const now = currentDateTime();
@@ -45,10 +43,6 @@ export const Edit = () => {
             });
             // eslint-disable-next-line
     }, [commuteId]);
-
-    if (values.ownerId !== userId) {
-        return <Navigate to={`/commutes/${commuteId}`} replace />
-    }
 
     const formValidate = (e) => {
         const value = e.target.value;

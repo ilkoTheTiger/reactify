@@ -32,7 +32,8 @@ export const CommuteDetails = () => {
             }
             dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
         });
-    }, [commuteId, commentService, commuteService]);
+        // eslint-disable-next-line
+    }, [commuteId]);
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(commuteId, values.comment);
