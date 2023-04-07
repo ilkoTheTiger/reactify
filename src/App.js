@@ -16,6 +16,7 @@ import { Edit } from './componens/Edit/Edit';
 import { Login } from './componens/Login/Login';
 import { Register } from './componens/Register/Register';
 import { Logout } from './componens/Logout/Logout';
+import { RouteGuard } from './componens/common/RouteGuard';
 
 function App() {
     const navigate = useNavigate();
@@ -54,24 +55,19 @@ function App() {
                 <main>
                     <Routes>
                         <Route path='/' element={<Home />} />
-                        <Route path='/host' element={
-                            <RouteGuard>
-                                <Host onHostCommuteSubmit={onHostCommuteSubmit} />
-                            </RouteGuard>
-                        } />
                         <Route path='/commutes' element={<Catalog commutes={commutes} />} />
                         <Route path='/commutes/:commuteId' element={<CommuteDetails setDeletedCommute={setDeletedCommute} />}></Route>
-                        <Route path='/commutes/:commuteId/edit' element={<Edit onEditCommuteSubmit={onEditCommuteSubmit} />}></Route>
-                        <Route path='/login' element={
-                            <SessionGuard>
-                                <Login />
-                            </SessionGuard>
-                        } />
-                        <Route path='/register' element={
-                            <SessionGuard>
-                                <Register />
-                            </SessionGuard>
-                        } />
+                        
+                        <Route element={<RouteGuard />} >
+                            <Route path='/host' element={<Host onHostCommuteSubmit={onHostCommuteSubmit} />} />
+                            <Route path='/commutes/:commuteId/edit' element={<Edit onEditCommuteSubmit={onEditCommuteSubmit} />} />
+                        </Route>
+
+                        <Route element={<SessionGuard />} >
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/register' element={<Register />} />
+                        </Route>
+                        
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/*' element={<h1>404 Page</h1>} />
                     </Routes>
