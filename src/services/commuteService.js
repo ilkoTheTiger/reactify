@@ -12,6 +12,13 @@ export const commuteServiceFactory = (token) => {
         return commutes;
     };
 
+    const getLatest = async () => {
+        const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
+        // const Latest = Object.values(result);
+
+        return Latest;
+    }
+
     async function getPassengers(commuteId) {
         const result = request.get(`http://localhost:3030/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`);
     
@@ -36,6 +43,7 @@ export const commuteServiceFactory = (token) => {
 
     return {
         getAll,
+        getLatest,
         getPassengers,
         getOne,
         create,
