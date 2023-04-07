@@ -10,7 +10,6 @@ export const CommuteProvider = ({
 }) => {
     const navigate = useNavigate();
     const [commutes, setCommutes] = useState([]);
-    const [deletedCommute, setDeletedCommute] = useState({});
     const commuteService = commuteServiceFactory();
 
     useEffect(() => {
@@ -18,7 +17,7 @@ export const CommuteProvider = ({
             .then(result => {
                 setCommutes(result);
             });
-    }, [deletedCommute, setDeletedCommute, commuteService]);
+    }, [commuteService]);
 
     const onHostCommuteSubmit = async (data) => {
         const createdCommute = await commuteService.create(data);
@@ -35,10 +34,15 @@ export const CommuteProvider = ({
         navigate(`/commutes/${values._id}`);
     };
 
+    const deleteCommute = (commuteId) => {
+        setGames(state => state.filter(commute => commute._id !== commuteId));
+    };
+
     const contextValues = {
         commutes,
         onHostCommuteSubmit,
         onEditCommuteSubmit,
+        deleteCommute,
     }
 
     return (

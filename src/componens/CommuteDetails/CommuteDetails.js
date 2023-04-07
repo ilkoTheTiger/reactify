@@ -15,7 +15,7 @@ import { AddComment } from './AddComment/AddComment';
 export const CommuteDetails = () => {
     const { commuteId } = useParams();
     const { userId, isAuthenticated, userEmail } = useAuthContext();
-    const {setDeletedCommute} = useCommuteContext();
+    const { deleteCommute } = useCommuteContext();
     const [commute, dispatch] = useReducer(commuteReducer, {});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
@@ -30,7 +30,7 @@ export const CommuteDetails = () => {
                 ...commuteData,
                 comments,
             }
-            dispatch({type: 'COMMUTE_FETCH', payload: commuteState})
+            dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
         });
     }, [commuteId, commentService, commuteService]);
 
@@ -48,11 +48,15 @@ export const CommuteDetails = () => {
     const isOwner = commute._ownerId === userId;
 
     const onDeleteClick = async () => {
-        await commuteService.delete(commute._id);
+        const confirmation = confirm(`Commute ${commute.from}-${commute.to} is about to be deleted!`)
 
-        setDeletedCommute(commute);
+        if (confirmation) {
+            await commuteService.delete(commute._id);
 
-        navigate('/commutes');
+            deleteCommute(commute._id);
+
+            navigate('/commutes');
+        }
     };
 
     return (
