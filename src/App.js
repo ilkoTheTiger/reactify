@@ -19,32 +19,6 @@ import { Logout } from './componens/Logout/Logout';
 import { RouteGuard } from './componens/common/RouteGuard';
 
 function App() {
-    const navigate = useNavigate();
-    const [commutes, setCommutes] = useState([]);
-    const [deletedCommute, setDeletedCommute] = useState({});
-    const commuteService = commuteServiceFactory(); // Pass accessToken
-
-    useEffect(() => {
-        commuteService.getAll()
-            .then(result => {
-                setCommutes(result);
-            });
-    }, [deletedCommute]);
-
-    const onHostCommuteSubmit = async (data) => {
-        const createdCommute = await commuteService.create(data);
-        setCommutes(state => [...state, createdCommute]);
-
-        navigate('/commutes');
-    };
-
-    const onEditCommuteSubmit = async (values) => {
-        const result = await commuteService.edit(values._id, values);
-
-        setCommutes(state => state.map(x => x._id === values._id ? result : x));
-
-        navigate(`/commutes/${values._id}`);
-    };
 
     return (
         <>
