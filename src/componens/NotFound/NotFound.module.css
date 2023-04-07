@@ -1,0 +1,10 @@
+.notFounContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notFoundMessage {
+  text-align: center;
+  color: var(--clr-primary);
+}

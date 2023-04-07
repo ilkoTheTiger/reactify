@@ -18,6 +18,7 @@ import { Login } from './componens/Login/Login';
 import { Register } from './componens/Register/Register';
 import { Logout } from './componens/Logout/Logout';
 import { Footer } from './componens/Footer/Footer';
+import { NotFound } from './componens/NotFound/NotFound';
 
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
                                 <Route path='/register' element={<Register />} />
                             </Route>
 
-                            <Route path='/*' element={<h1>404 Page</h1>} />
+                            <Route path='/*' element={<NotFound />} />
                         </Routes>
                     </main>
                     <Footer />
