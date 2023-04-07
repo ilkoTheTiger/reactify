@@ -22,6 +22,7 @@ export const CommuteDetails = () => {
     const [reservation, setReservation] = useState({
         reservationId: '',
     });
+    const [passengers, setPassengers] = useState({});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
     const passengerService = useService(passengerServiceFactory);
@@ -46,11 +47,15 @@ export const CommuteDetails = () => {
 
     useEffect(() => {
         Promise.all([
+            passengerService.getAllPassengers(commuteId),
             passengerService.getUserReservation(commuteId, userId)
-        ]).then(([userLiked]) => {
+        ]).then(([reservations, userLiked]) => {
             setReservation(userLiked[0]?._id);
+            if (reservations > commute.seats) {
+                onLeaveClick();
+            }
         });
-    }, [reservation])
+    }, [reservation]);
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(commuteId, values.comment);
@@ -65,7 +70,7 @@ export const CommuteDetails = () => {
 
     const onReserveClick = async () => {
         const response = await passengerService.reserveSeat(commute._id);
-        
+
         setReservation(response._id);
 
         dispatch({
@@ -107,13 +112,25 @@ export const CommuteDetails = () => {
 
                 <div className="commute-header">
                     <h3>{commute.from}-{commute.to}</h3>
-                    <span className="seats">Seats: {commute.seats}</span>
+                    <span className="seats">Seats Left: {(commute.seats - commute.reservations > 0) ? (commute.seats - commute.reservations) : 'Commute is Full!'}</span>
                     <p className="phone">Phone: {commute.phone}</p>
                 </div>
 
                 <p className="time">
                     {formatDate(commute.time)}
                 </p>
+
+                {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
+                    <div className="buttons">
+                        <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
+                    </div>
+                )}
+
+                {!isOwner && reservation && isAuthenticated && (
+                    <div className="buttons">
+                        <button className="button" onClick={onLeaveClick}>Leave the Commute</button>
+                    </div>
+                )}
 
                 <div className="details-comments">
                     <h2>Comments:</h2>
@@ -130,26 +147,17 @@ export const CommuteDetails = () => {
                 </div>
 
                 {isOwner && (
-                    <div className="buttons">
-                        <Link to={`/commutes/${commute._id}/edit`} className="button">Edit</Link>
-                        <button className="button" onClick={onDeleteClick}>Delete</button>
-                    </div>
-                )}
+                    <>
+                        <div className="buttons">
+                            <Link to={`/commutes/${commute._id}/edit`} className="button">Edit</Link>
+                            <button className="button" onClick={onDeleteClick}>Delete</button>
+                        </div>
 
+                        <div className="details-passengers">
+                            <h2>Passengers:</h2>
 
-                <p>{commute.reservations}/{commute.seats}
-                </p>
-
-                {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
-                    <div className="buttons">
-                        <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
-                    </div>
-                )}
-
-                {!isOwner && reservation && isAuthenticated && (
-                    <div className="buttons">
-                        <button className="button" onClick={onLeaveClick}>Leave the Commute</button>
-                    </div>
+                        </div>
+                    </>
                 )}
             </div>
 
