@@ -15,11 +15,11 @@
   z-index: -1;
 }
 
-.homeContainer {
+.commutesContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   margin-bottom: 70vh;
 }
 
@@ -30,7 +30,3 @@ article.cardsContainer {
   flex-direction: row;
   gap: 2rem;
 }
-/* 
-.commuteCard {
-  display: inline-block;
-} */
