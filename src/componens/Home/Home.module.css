@@ -8,3 +8,7 @@
   text-align: center;
   color: var(--clr-primary);
 }
+
+.backgroundImage {
+  width: 100vw;
+}
