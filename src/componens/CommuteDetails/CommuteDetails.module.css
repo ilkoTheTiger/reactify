@@ -17,6 +17,10 @@ section#commuteDetails {
     color: var(--clr-primary);
 }
 
+.commuteHeader {
+    text-align: center;
+}
+
 .reservationActions{
     display: flex;
     justify-content: center;

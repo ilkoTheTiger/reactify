@@ -114,27 +114,28 @@ export const CommuteDetails = () => {
             <div className={styles.detailsContainer}>
                 <div className="info-section">
 
-                    <div className="commute-header">
+                    <div className={styles.commuteHeader}>
                         <h3>{commute.from}-{commute.to}</h3>
                         <span className="seats">Seats Left: {(commute.seats - commute.reservations > 0) ? (commute.seats - commute.reservations) : 'Commute is Full!'}</span>
                         {reservation && (
                             <p className="phone">Phone: {commute.phone}</p>
                         )}
+                        <p className="time">
+                            {formatDate(commute.time)}
+                        </p>
                     </div>
 
-                    <p className="time">
-                        {formatDate(commute.time)}
-                    </p>
+
 
                     {commute.reservations < Number(commute.seats) && !isOwner && !reservation && isAuthenticated && (
                         <div className={styles.reservationActions}>
-                            <input type='submit' className={styles.inputButton} onClick={onReserveClick} value={'Reserve a Seat'}/>
+                            <input type='submit' className={styles.inputButton} onClick={onReserveClick} value={'Reserve a Seat'} />
                         </div>
                     )}
 
                     {!isOwner && reservation && isAuthenticated && (
                         <div className={styles.reservationActions}>
-                            <input type='submit' className={styles.inputButton} onClick={onLeaveClick} value={'Leave the Commute'}/>
+                            <input type='submit' className={styles.inputButton} onClick={onLeaveClick} value={'Leave the Commute'} />
                         </div>
                     )}
 
