@@ -148,8 +148,8 @@ export const CommuteDetails = () => {
                     {isAuthenticated && <AddComment onCommentSubmit={onCommentSubmit} />}
                 </div>
                 <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
+                    <h3>Comments:</h3>
+                    <ul type="none">
                         {commute.comments && Object.values(commute.comments).map(comment => (
                             <li key={comment._id} className="comment">
                                 <p>{comment.author.email}: {comment.comment}</p>
