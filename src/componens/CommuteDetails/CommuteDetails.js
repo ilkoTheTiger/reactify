@@ -5,6 +5,7 @@ import { useService } from '../../hooks/useService';
 import { formatDate } from '../../utils/dateUtils';
 import { commuteServiceFactory } from '../../services/commuteService';
 import { commentServiceFactory } from '../../services/commentService';
+import { passengerServiceFactory } from '../../services/passengerService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useCommuteContext } from '../../contexts/CommuteContext';
 import { commuteReducer } from '../../reducers/commuteReducer';
@@ -19,6 +20,7 @@ export const CommuteDetails = () => {
     const [commute, dispatch] = useReducer(commuteReducer, {});
     const commuteService = useService(commuteServiceFactory);
     const commentService = useService(commentServiceFactory);
+    const passengerService = useService(passengerServiceFactory);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -61,6 +63,15 @@ export const CommuteDetails = () => {
         }
     };
 
+    const onReserveClick = async () => {
+        await passengerService.reserve(commute._id);
+
+        deleteCommute(commute._id);
+
+        navigate('/commutes');
+
+    };
+
     return (
         <section id={styles.commuteDetails}>
             <h2>Commute Details</h2>
@@ -94,6 +105,12 @@ export const CommuteDetails = () => {
                     <div className="buttons">
                         <Link to={`/commutes/${commute._id}/edit`} className="button">Edit</Link>
                         <button className="button" onClick={onDeleteClick}>Delete</button>
+                    </div>
+                )}
+
+                {!isOwner && isAuthenticated && (
+                    <div className="buttons">
+                        <button className="button" onClick={onReserveClick}>Reserve a Seat</button>
                     </div>
                 )}
             </div>
