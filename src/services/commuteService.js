@@ -24,7 +24,7 @@ export const commuteServiceFactory = (token) => {
         const result = request.get(`https://metnime.onrender.com/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`);
         // const result = request.get(`http://localhost:3030/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`);
     
-        return result || 0;
+        return result;
     };
 
     const getOne = async (commuteId) => {

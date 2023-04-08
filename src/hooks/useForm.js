@@ -21,8 +21,6 @@ export const useForm = (initialValues, onSubmitHandler) => {
     };
 
     const changeValues = (newValues) => {
-        //TODO validate newValues shape like initialValues
-
         setValues(newValues);
     };
 

@@ -39,10 +39,9 @@ export const CommuteDetails = () => {
                 reservations,
             }
             dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
-        }).catch(
-            passengerService.reserveSeat(commute._id).then((response) => {
-                passengerService.unreserveSeat(response._id)
-            })
+        }).catch((error) => [
+            console.log(error.message)
+        ]
         )
         // eslint-disable-next-line
     }, [commuteId]);
