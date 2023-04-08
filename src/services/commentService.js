@@ -1,7 +1,9 @@
 import { requestFactory } from './requester';
 
-const baseUrl = 'http://localhost:3030/data/comments'
-const request = requestFactory(); //potential cause of bug
+
+// const baseUrl = 'http://localhost:3030/data/comments'
+const baseUrl = 'https://metnime.onrender.com:3030/data/comments'
+const request = requestFactory();
 
 export const commentServiceFactory = (token) => {
 

@@ -1,6 +1,8 @@
 import { requestFactory } from './requester';
 
-const baseUrl = 'http://localhost:3030/data/passengers'
+
+const baseUrl = 'https://metnime.onrender.com:3030/data/passengers'
+// const baseUrl = 'http://localhost:3030/data/passengers'
 
 const endpoints = {
     'getPassengers': (commuteId) => `?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`,

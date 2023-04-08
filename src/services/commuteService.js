@@ -1,6 +1,7 @@
 import { requestFactory } from "./requester"
 
-const baseUrl = 'http://localhost:3030/data/commutes'
+const baseUrl = 'https://metnime.onrender.com:3030/data/commutes'
+// const baseUrl = 'http://localhost:3030/data/commutes'
 
 export const commuteServiceFactory = (token) => {
     const request = requestFactory();
@@ -20,7 +21,8 @@ export const commuteServiceFactory = (token) => {
     }
 
     async function getPassengers(commuteId) {
-        const result = request.get(`http://localhost:3030/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`);
+        const result = request.get(`https://metnime.onrender.com:3030/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`);
+        // const result = request.get(`http://localhost:3030/data/passengers?where=commuteId%3D%22${commuteId}%22&distinct=_ownerId&count`);
     
         return result || 0;
     };
