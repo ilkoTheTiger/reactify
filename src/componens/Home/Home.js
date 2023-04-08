@@ -15,10 +15,11 @@ export const Home = () => {
                     <article className={styles.cardsContainer}>
                         <div className={styles.commutesContainer}>
                             {latest.map(commute => <LatestCommute key={commute._id} {...commute} />)}
-                        </div>
-                        {latest.length === 0 && (
+                            {latest.length === 0 && (
                             <p className="no-articles">No commutes available right now!</p>
                         )}
+                        </div>
+
                     </article>
                 </div>
             </section>
