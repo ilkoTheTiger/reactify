@@ -1,7 +1,7 @@
 import { requestFactory } from './requester';
 
 
-const baseUrl = 'https://metnime.onrender.com:3030/data/passengers'
+const baseUrl = 'https://metnime.onrender.com/data/passengers'
 // const baseUrl = 'http://localhost:3030/data/passengers'
 
 const endpoints = {
