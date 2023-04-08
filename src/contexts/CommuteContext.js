@@ -24,11 +24,12 @@ export const CommuteProvider = ({
     useEffect(() => {
         commuteService.getLatest()
             .then(result => {
-                console.log(result)
                 setLatest(result);
-            });
+            }).catch(
+                setLatest([])
+            )
         // eslint-disable-next-line
-    }, []);
+    }, [commutes]);
 
     const onHostCommuteSubmit = async (data) => {
         const createdCommute = await commuteService.create(data);

@@ -27,7 +27,6 @@ export const CommuteDetails = () => {
     const passengerService = useService(passengerServiceFactory);
     const navigate = useNavigate();
 
-
     useEffect(() => {
         Promise.all([
             commuteService.getOne(commuteId),
@@ -40,9 +39,11 @@ export const CommuteDetails = () => {
                 reservations,
             }
             dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
-        }).catch(error => {
-            navigate('/commutes');
-        });
+        }).catch(
+            passengerService.reserveSeat(commute._id).then((response) => {
+                passengerService.unreserveSeat(response._id)
+            })
+        )
         // eslint-disable-next-line
     }, [commuteId]);
 
