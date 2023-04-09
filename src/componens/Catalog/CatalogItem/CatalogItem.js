@@ -15,7 +15,7 @@ export const CatalogItem = ({
                 <p>Commute: {from}-{to}</p>
                 <p>Seats: {seats}</p>
                 <p>Scheduled for: {formatDate(time)}</p>
-                <Link to={`/commutes/${_id}`} className={styles.detailsButton}><i className="fa-solid fa-up-right-from-square"></i></Link>
+                <Link to={`/commutes/${_id}`} className={styles.detailsButton}><i className="fa-solid fa-up-right-from-square"></i>.</Link>
             </div>
         </article>
     );

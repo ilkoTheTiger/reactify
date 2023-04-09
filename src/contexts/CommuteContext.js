@@ -17,6 +17,7 @@ export const CommuteProvider = ({
         commuteService.getAll()
             .then(result => {
                 setCommutes(result);
+                console.log(result)
             });
         // eslint-disable-next-line
     }, []);
@@ -34,7 +35,6 @@ export const CommuteProvider = ({
     const onHostCommuteSubmit = async (data) => {
         const createdCommute = await commuteService.create(data);
         setCommutes(state => [...state, createdCommute]);
-
         navigate('/commutes');
     };
 

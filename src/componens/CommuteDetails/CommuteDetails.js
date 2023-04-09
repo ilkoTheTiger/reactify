@@ -38,6 +38,7 @@ export const CommuteDetails = () => {
                 comments,
                 reservations,
             }
+            console.log(commuteState)
             dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
         }).catch((error) => [
             console.log(error.message)

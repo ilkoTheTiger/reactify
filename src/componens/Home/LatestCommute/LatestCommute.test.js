@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import { CatalogItem } from './CatalogItem';
+import { LatestCommute } from './LatestCommute';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { formatDate } from '../../../utils/dateUtils';
 
-describe('Catalog Item Component', () => {
+describe('Latest Item Component', () => {
     test('Show commute', () => {
         const from = 'Sofia';
         const to = 'Plovdiv';
 
         render(
             <BrowserRouter>
-                <CatalogItem _id={'id'} from={from} to={to} />
+                <LatestCommute _id={'id'} from={from} to={to} />
             </BrowserRouter>
         );
 
@@ -25,7 +25,7 @@ describe('Catalog Item Component', () => {
 
         render(
             <BrowserRouter>
-                <CatalogItem _id={'id'} from={from} to={to} seats={seats} />
+                <LatestCommute _id={'id'} from={from} to={to} seats={seats} />
             </BrowserRouter>
         );
 
@@ -37,7 +37,7 @@ describe('Catalog Item Component', () => {
 
         render(
             <BrowserRouter>
-                <CatalogItem _id={'id'} time={time} />
+                <LatestCommute _id={'id'} time={time} />
             </BrowserRouter>
         );
 
@@ -50,7 +50,7 @@ describe('Catalog Item Component', () => {
 
         render(
             <BrowserRouter>
-                <CatalogItem _id={itemId} />
+                <LatestCommute _id={itemId} />
             </BrowserRouter>
         );
 
