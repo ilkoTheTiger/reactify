@@ -32,7 +32,7 @@ We have details overview and past comments for everyone. The other functionaliti
 This is only accessible to the owners of each commute, where they can adjust any of the fields and save the changes without affecting additional data related to it, such as the comments and the registered passengers. The same validation applies, as in the **Host** view.
 
 ## Application Architecture
-For the most part, each component has its own folder inside the components folder, except for some nested components such as the CatalogItem and LatestCommute, which are found inside their respective parents folder. To prevent unauthorized access to commutes and non-authenticated users to interact with it, there are component wrappers inside the common folder:
+For the most part, each component has its own folder inside the components folder, except for some nested components such as the CatalogItem and LatestCommute, which are found inside their respective parents folder. Each component has its own styles found in the same folder within modular css file. To prevent unauthorized access to commutes and non-authenticated users to interact with it, there are component wrappers inside the common folder:
 * CommuteOwner - checks if the user is owner of the commute before edit
 * RouteGuard - redirects to login the unathenticated users
 * SessionGuard - redirects to home the already authenticated users when Login or Register is being called in the URL
