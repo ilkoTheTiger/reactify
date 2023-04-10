@@ -34,7 +34,7 @@ export const Login = () => {
             errors.email = ''
         }
 
-        if (target === 'password' && (value.length <= 3 || value.length > 26)) {
+        if (target === 'password' && (value.length < 3 || value.length > 26)) {
             errors.password = 'Password must be between 3 and 26 letters!';
         } else if (target === 'password' && !(value.length < 3 || value.length > 26)) {
             errors.password = ''

@@ -36,13 +36,13 @@ export const Register = () => {
             errors.email = ''
         }
 
-        if (target === 'password' && (value.length <= 3 || value.length > 26)) {
+        if (target === 'password' && (value.length < 3 || value.length > 26)) {
             errors.password = 'Password must be between 3 and 26 letters!';
-        } else if (target === 'password' && !(value.length <= 3 || value.length > 26)) {
+        } else if (target === 'password' && !(value.length < 3 || value.length > 26)) {
             errors.password = ''
         }
 
-        if (target === 'confirmPassword' && (value.length <= 3 || value.length > 26)) {
+        if (target === 'confirmPassword' && (value.length < 3 || value.length > 26)) {
             errors.confirmPassword = 'Confirm Password must be between 3 and 26 letters!';
         } else if (target === 'confirmPassword' && value !== values.password) {
             errors.confirmPassword = 'Confirm Password must match your Password!';
