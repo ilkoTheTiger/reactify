@@ -1184,9 +1184,6 @@
 
     var util$2 = initPlugin$2;
 
-    /*
-     * This plugin requires auth and storage plugins
-     */
 
     const { RequestError: RequestError$3, ConflictError: ConflictError$2, CredentialError: CredentialError$2, AuthorizationError: AuthorizationError$2 } = errors;
 
