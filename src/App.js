@@ -54,7 +54,9 @@ function App() {
                             <Route path='/*' element={<NotFound />} />
                         </Routes>
                     </main>
-                    <Footer />
+                    <footer>
+                        <Footer />
+                    </footer>
                 </CommuteProvider>
             </AuthProvider>
         </>
