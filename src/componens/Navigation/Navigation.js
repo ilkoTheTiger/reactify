@@ -25,7 +25,7 @@ export const Navigation = () => {
                         <li><NavLink style={({ isActive }) => ({ color: isActive ? '#13bc9c' : '' })} to='/register'>Register</NavLink></li>
                     </>
                 )}
-                <a href="https://www.f6s.com/metnime?follow=1" target="_blank" title="Follow MetniMe on F6S"><img src="https://www.f6s.com/static-resource/images/f6s-follow-secondary.png" border="0" width="78" height="22 " alt="Follow MetniMe on F6S" style="width: 78px; height: 22px; padding: 0px; margin: 0px;" /></a>
+                <NavLink href="https://www.f6s.com/metnime?follow=1" target="_blank" title="Follow MetniMe on F6S"><img src="https://www.f6s.com/static-resource/images/f6s-follow-secondary.png" border="0" width="78" height="22 " alt="Follow MetniMe on F6S" style="width: 78px; height: 22px; padding: 0px; margin: 0px;" /></NavLink>
             </ul>
         </nav>
     );
