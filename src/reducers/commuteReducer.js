@@ -19,15 +19,7 @@ export const commuteReducer = (state, action) => {
         case 'COMMENT_DELETE':
             return {
                 ...state,
-                comments: [
-                    {
-                        ...action.payload,
-                        author: {
-                            email: action.userEmail,
-                        }
-                    },
-                    ...state.comments
-                ],
+                comments: [...state.comments].filter(comment => comment._id !== action.payload ),
                 reservations: state.reservations
             }
         case 'RESERVATION_ADD':

@@ -38,7 +38,6 @@ export const CommuteDetails = () => {
                 comments,
                 reservations,
             }
-            console.log(commuteState)
             dispatch({ type: 'COMMUTE_FETCH', payload: commuteState })
         }).catch((error) => [
             console.log(error.message)
@@ -72,6 +71,19 @@ export const CommuteDetails = () => {
             payload: response,
             userEmail
         });
+    };
+
+    const onCommentDelete = async (e) => {
+        await commentService.deleteComment(e.target.dataset.id);
+        if (userId === e.target.dataset.owner) {
+
+            dispatch({
+                type: 'COMMENT_DELETE',
+                // payload: {...response, email: userEmail}, // Possible substitute fir next 2 lines
+                payload: e.target.dataset.id,
+                userEmail
+            });
+        }
     };
 
     const onReserveClick = async () => {
@@ -160,7 +172,7 @@ export const CommuteDetails = () => {
                     <ul type="none">
                         {commute.comments && Object.values(commute.comments).map(comment => (
                             <li key={comment._id} className="comment">
-                                <p className={styles.commentLine}><strong>{comment.author.email}</strong>: {comment.comment}</p>
+                                <p className={styles.commentLine}><strong>{comment.author.email}</strong>: {comment.comment} {userId === comment._ownerId && (<i data-owner={comment._ownerId} data-id={comment._id} onClick={onCommentDelete} class="fa-solid fa-trash"></i>)}</p>
                             </li>
                         ))}
                     </ul>
