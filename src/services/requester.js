@@ -31,12 +31,13 @@ const requester = async (method, url, data) => {
         return {};
     }
 
+    const result = await response.json();
+
     if (response.status === 403) {
         localStorage.clear();
-        return {};
+        throw result;
     }
 
-    const result = await response.json();
 
     if (!response.ok) {
         throw result;
