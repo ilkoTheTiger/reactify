@@ -24,8 +24,8 @@ app.use(authentication());
 
 const start = async () => {
   try {
-    // await db(`mongodb://mongo:G5X7ci7EQjepTmdTxjyl@containers-us-west-86.railway.app:5760`)
-    await db(dbConnection);
+    await db(`mongodb://mongo:G5X7ci7EQjepTmdTxjyl@containers-us-west-86.railway.app:5760`)
+    // await db(dbConnection);
     require('./config/express')(app, express);
     require('./routes/router')(app);
 
