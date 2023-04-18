@@ -68,3 +68,11 @@ section#commuteDetails {
   .commentLine {
     max-width: 60vw;
   }
+
+  i {
+    color: var(--clr-primary);
+  }
+
+  i:hover{
+    color: var(--clr-fill);
+  }
