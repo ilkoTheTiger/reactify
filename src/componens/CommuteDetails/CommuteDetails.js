@@ -26,6 +26,9 @@ export const CommuteDetails = () => {
     const commentService = useService(commentServiceFactory);
     const passengerService = useService(passengerServiceFactory);
     const navigate = useNavigate();
+    
+    useEffect(() => {
+    }, [])
 
     useEffect(() => {
         Promise.all([

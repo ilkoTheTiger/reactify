@@ -9,6 +9,7 @@ import styles from './Host.module.css';
 
 export const Host = () => {
     const {onHostCommuteSubmit} = useCommuteContext();
+    document.title = 'MetniMe - Host'
     const now = currentDateTime();
     const max = maxDate();
     const {values, changeHandler, onSubmit} = useForm({

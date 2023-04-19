@@ -5,6 +5,8 @@ import { LatestCommute } from './LatestCommute/LatestCommute';
 
 export const Home = () => {
     const { latest } = useCommuteContext();
+    document.title = 'MetniMe - Home'
+    
     return (
         <>
             <section className={styles.homeSection}>

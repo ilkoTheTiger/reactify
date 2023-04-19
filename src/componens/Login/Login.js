@@ -11,6 +11,7 @@ import { checkForErrors, hasEmptyProperty } from '../../utils/validators';
 
 export const Login = () => {
     const { onLoginSubmit } = useContext(AuthContext);
+    document.title = 'MetniMe - Login'
     const { values, changeHandler, onSubmit } = useForm({
         [FormKeys.Email]: '',
         [FormKeys.Password]: '',
