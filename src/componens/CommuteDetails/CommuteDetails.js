@@ -26,9 +26,8 @@ export const CommuteDetails = () => {
     const commentService = useService(commentServiceFactory);
     const passengerService = useService(passengerServiceFactory);
     const navigate = useNavigate();
+    document.title = `MetniMe - Details`
     
-    useEffect(() => {
-    }, [])
 
     useEffect(() => {
         Promise.all([

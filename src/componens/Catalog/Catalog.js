@@ -6,6 +6,7 @@ import { CatalogItem } from './CatalogItem/CatalogItem';
 export const Catalog = () => {
     const {commutes} = useCommuteContext();
     document.title = 'MetniMe - Commutes'
+    
     return (
         <section className={styles.catalogContainer}>
             <h2>Find a Commute</h2>
